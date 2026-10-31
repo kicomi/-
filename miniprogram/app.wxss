@@ -1,0 +1,166 @@
+/* app.wxss  全局样式 */
+page {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* 统一的视觉节奏：卡片圆角 28、阴影更柔、价格更醒目 */
+  background: #f7f4ef;
+  color: #1b1f23;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+  font-size: 28rpx;
+  line-height: 1.55;
+}
+
+.page {
+  padding: 0 32rpx 40rpx;
+}
+
+.muted {
+  color: #9aa3ad;
+}
+
+.card {
+  border-radius: 28rpx;
+  box-shadow: 0 10rpx 30rpx -24rpx rgba(27, 31, 35, 0.6);
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 28rpx;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 40rpx 0 20rpx;
+}
+
+.section-title text:first-child {
+  font-size: 32rpx;
+  font-weight: 650;
+}
+
+.section-title text:last-child {
+  font-size: 24rpx;
+  color: #9aa3ad;
+}
+
+.price {
+  color: #2f7d5b;
+  font-weight: 700;
+  }
+
+/* 主按钮加一点按压反馈 */
+.btn { transition: transform 0.12s ease, opacity 0.12s ease; }
+.btn-hover { transform: scale(0.97); opacity: 0.92; }
+
+.price-origin {
+  font-size: 22rpx;
+  color: #b6b0a6;
+  text-decoration: line-through;
+  margin-left: 10rpx;
+}
+
+.chip {
+  display: inline-block;
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 0 14rpx;
+  border-radius: 10rpx;
+  font-size: 22rpx;
+  background: #f3f0ea;
+  color: #5b6470;
+  margin-right: 10rpx;
+}
+
+.chip.green {
+  background: #e9f2ed;
+  color: #2f7d5b;
+}
+
+.chip.warm {
+  background: #fbf0e6;
+  color: #c07a43;
+}
+
+.btn {
+  height: 88rpx;
+  border-radius: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  font-weight: 600;
+  border: none;
+}
+
+.btn::after {
+  border: none;
+}
+
+.btn-primary {
+  background: #2f7d5b;
+  color: #fff;
+}
+
+.btn-primary[disabled] {
+  background: #b9cdc3;
+  color: #fff;
+}
+
+.btn-ghost {
+  background: #fff;
+  color: #5b6470;
+  border: 1rpx solid #eee9e1;
+}
+
+.field {
+  margin-bottom: 28rpx;
+}
+
+.field .label {
+  display: block;
+  font-size: 26rpx;
+  color: #5b6470;
+  margin-bottom: 12rpx;
+}
+
+.field input {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #fff;
+  border: 1rpx solid #eee9e1;
+  border-radius: 20rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+/* textarea 是原生组件，高度固定，靠 padding 排版 */
+.field textarea {
+  width: 100%;
+  height: 160rpx;
+  background: #fff;
+  border: 1rpx solid #eee9e1;
+  border-radius: 20rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+.empty {
+  padding: 100rpx 0;
+  text-align: center;
+  color: #9aa3ad;
+  font-size: 26rpx;
+}

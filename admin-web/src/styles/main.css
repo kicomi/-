@@ -1,0 +1,181 @@
+/* ============================================================
+   全局样式与 Element Plus 覆写
+   配色：深蓝侧栏 + 浅灰工作区 + 翠绿主色
+   ============================================================ */
+
+:root {
+  --brand: #10b981;
+  --brand-dark: #059669;
+  --ink-900: #0f172a;
+  --ink-700: #334155;
+  --ink-500: #64748b;
+  --ink-400: #94a3b8;
+  --line: #e9edf3;
+  --surface: #ffffff;
+  --canvas: #f4f6fa;
+  --radius: 14px;
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 28px -16px rgba(15, 23, 42, 0.18);
+
+  /* 大屏专用 */
+  --screen-bg: #070d18;
+  --screen-card: rgba(255, 255, 255, 0.045);
+  --screen-line: rgba(148, 163, 184, 0.16);
+  --cyan: #22d3ee;
+  --violet: #a78bfa;
+  --emerald: #34d399;
+  --amber: #fbbf24;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Microsoft YaHei', sans-serif;
+  background: var(--canvas);
+  color: var(--ink-700);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------------- 通用块 ---------------- */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.page-head h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 650;
+  color: var(--ink-900);
+  letter-spacing: 0.2px;
+}
+
+.page-head p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-400);
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 18px 20px;
+}
+
+.panel-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-900);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-title::before {
+  content: '';
+  width: 3px;
+  height: 14px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--brand), #34d399);
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-bar .spacer {
+  flex: 1;
+}
+
+.money {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------- Element Plus 细节覆写 ---------------- */
+
+.el-button--primary {
+  --el-button-bg-color: var(--brand);
+  --el-button-border-color: var(--brand);
+  --el-button-hover-bg-color: var(--brand-dark);
+  --el-button-hover-border-color: var(--brand-dark);
+  --el-button-active-bg-color: var(--brand-dark);
+  border-radius: 9px;
+}
+
+.el-button {
+  border-radius: 9px;
+}
+
+.el-input__wrapper,
+.el-select__wrapper {
+  border-radius: 9px;
+  box-shadow: 0 0 0 1px #e2e8f0 inset;
+}
+
+.el-input__wrapper:hover,
+.el-select__wrapper:hover {
+  box-shadow: 0 0 0 1px #cbd5e1 inset;
+}
+
+.el-table {
+  --el-table-border-color: #eef2f7;
+  --el-table-header-bg-color: #f8fafc;
+  --el-table-row-hover-bg-color: #f6fbf9;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.el-table th.el-table__cell {
+  font-weight: 600;
+  color: var(--ink-500);
+  font-size: 12.5px;
+  letter-spacing: 0.2px;
+}
+
+.el-table td.el-table__cell {
+  padding: 9px 0;
+}
+
+.el-pagination {
+  --el-pagination-button-bg-color: transparent;
+  font-weight: 500;
+}
+
+.el-tag {
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.el-dialog {
+  border-radius: 14px;
+}
+
+.el-switch.is-checked .el-switch__core {
+  background-color: var(--brand);
+  border-color: var(--brand);
+}

@@ -1,0 +1,134 @@
+<view class="home">
+  <!-- 顶部：品牌 + 搜索 + 在售数 -->
+  <view class="hero">
+    <view class="hero-top">
+      <view class="brand">
+        <text class="brand-name">校园二手书</text>
+        <text class="brand-sub">同校同专业 · 教材流转</text>
+      </view>
+      <view class="stat-pill">
+        <text class="stat-num">{{stats.onSale}}</text>
+        <text class="stat-label">本在售</text>
+      </view>
+    </view>
+
+    <view class="search" bindtap="goSearch">
+      <text class="search-icon">🔍</text>
+      <text class="search-ph">搜索教材、课程、ISBN</text>
+      <text class="search-btn">搜索</text>
+    </view>
+  </view>
+
+  <view class="page" wx:if="{{!skeleton}}">
+    <!-- 首屏骨架 -->
+    <block wx:if="{{skeleton}}">
+      <view class="sk-banner"></view>
+      <view class="sk-cats">
+        <view class="sk-cat" wx:for="{{[1,2,3,4,5,6,7,8]}}" wx:key="*this"></view>
+      </view>
+      <view class="sk-row" wx:for="{{[1,2,3]}}" wx:key="*this">
+        <view class="sk-cover"></view>
+        <view class="sk-lines">
+          <view class="sk-line w70"></view>
+          <view class="sk-line w50"></view>
+          <view class="sk-line w30"></view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 广告 -->
+    <swiper wx:if="{{banners.length}}" class="banners" circular autoplay interval="4000"
+            indicator-dots indicator-color="rgba(255,255,255,.4)" indicator-active-color="#ffffff">
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <view class="banner banner-{{index % 3}}" data-banner="{{item}}" bindtap="onBannerTap">
+          <view class="banner-title">{{item.title}}</view>
+          <view class="banner-sub">{{item.subtitle}}</view>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <!-- 分类 -->
+    <view class="cats">
+      <view class="cat" wx:for="{{categories}}" wx:key="id"
+            data-id="{{item.id}}" bindtap="onCategoryTap">
+        <view class="cat-dot">{{item.name[0]}}</view>
+        <text class="cat-name">{{item.name}}</text>
+      </view>
+    </view>
+
+    <!-- 楼层：同专业在售 -->
+    <block wx:if="{{sameMajor.length}}">
+      <view class="floor-head">
+        <view class="floor-title"><text class="dot"></text>同专业在售</view>
+        <view class="floor-acts">
+          <text class="floor-refresh" data-which="major" bindtap="refreshFloor">换一批</text>
+          <text class="floor-more" bindtap="goSearch">更多 ›</text>
+        </view>
+      </view>
+      <scroll-view class="hscroll" scroll-x enable-flex>
+        <view class="mini" wx:for="{{sameMajor}}" wx:key="id" data-id="{{item.id}}" bindtap="onMiniBookTap">
+          <view class="mini-cover">
+            <image wx:if="{{item.coverImg}}" class="mini-img" src="{{item.coverImg}}" mode="aspectFill" lazy-load />
+            <text wx:else class="mini-letter">{{item.title[0]}}</text>
+          </view>
+          <text class="mini-title">{{item.title}}</text>
+          <text class="mini-price">¥{{item.price}}</text>
+        </view>
+      </scroll-view>
+    </block>
+
+    <!-- 楼层：低价专区 -->
+    <block wx:if="{{cheap.length}}">
+      <view class="floor-head">
+        <view class="floor-title"><text class="dot warm"></text>20 元以内</view>
+        <view class="floor-acts">
+          <text class="floor-refresh" data-which="cheap" bindtap="refreshFloor">换一批</text>
+          <text class="floor-more" bindtap="goSearch">更多 ›</text>
+        </view>
+      </view>
+      <scroll-view class="hscroll" scroll-x enable-flex>
+        <view class="mini" wx:for="{{cheap}}" wx:key="id" data-id="{{item.id}}" bindtap="onMiniBookTap">
+          <view class="mini-cover cheap">
+            <image wx:if="{{item.coverImg}}" class="mini-img" src="{{item.coverImg}}" mode="aspectFill" lazy-load />
+            <text wx:else class="mini-letter">{{item.title[0]}}</text>
+          </view>
+          <text class="mini-title">{{item.title}}</text>
+          <text class="mini-price">¥{{item.price}}</text>
+        </view>
+      </scroll-view>
+    </block>
+
+    <!-- 楼层：刚刚成交 -->
+    <block wx:if="{{sold.length}}">
+      <view class="floor-head">
+        <view class="floor-title"><text class="dot blue"></text>刚刚成交</view>
+        <view class="floor-acts">
+          <text class="floor-refresh" data-which="sold" bindtap="refreshFloor">换一批</text>
+          <text class="floor-sub">最近买走的书</text>
+        </view>
+      </view>
+      <view class="sold-list">
+        <view class="sold-item" wx:for="{{sold}}" wx:key="id" data-id="{{item.id}}" bindtap="onMiniBookTap">
+          <text class="sold-title">{{item.title}}</text>
+          <text class="sold-price">¥{{item.price}}</text>
+          <text class="sold-flag">已出</text>
+        </view>
+      </view>
+    </block>
+
+    <!-- 推荐 -->
+    <view class="floor-head">
+      <view class="floor-title"><text class="dot"></text>{{nickname ? '猜你想找' : '热门在售'}}</view>
+      <text class="floor-more" bindtap="goSearch">全部 ›</text>
+    </view>
+
+    <view wx:if="{{loadingRec}}" class="empty">正在挑选…</view>
+    <book-card wx:for="{{recommended}}" wx:key="id" book="{{item}}" bind:tap="onBookTap" />
+    <view wx:if="{{!loadingRec && !recommended.length}}" class="empty">还没有推荐，先去逛逛吧</view>
+
+    <view class="floor-head">
+      <view class="floor-title"><text class="dot"></text>最新上架</view>
+    </view>
+    <book-card wx:for="{{latest}}" wx:key="id" book="{{item}}" bind:tap="onBookTap" />
+  </view>
+</view>

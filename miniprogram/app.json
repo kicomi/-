@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/search/search",
+    "pages/publish/publish",
+    "pages/orders/orders",
+    "pages/me/me",
+    "pages/detail/detail",
+    "pages/chat/chat",
+    "pages/notice/notice",
+    "pages/reviews/reviews",
+    "pages/user/user",
+    "pages/profile/profile",
+    "pages/credit/credit",
+    "pages/register/register",
+    "pages/login/login"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f7f4ef",
+    "navigationBarTitleText": "校园二手书",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7f4ef"
+  },
+  "tabBar": {
+    "color": "#9aa3ad",
+    "selectedColor": "#2f7d5b",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_act.png"
+      },
+      {
+        "pagePath": "pages/search/search",
+        "text": "找书",
+        "iconPath": "images/search.png",
+        "selectedIconPath": "images/search_act.png"
+      },
+      {
+        "pagePath": "pages/publish/publish",
+        "text": "发布",
+        "iconPath": "images/publish.png",
+        "selectedIconPath": "images/publish_act.png"
+      },
+      {
+        "pagePath": "pages/orders/orders",
+        "text": "订单",
+        "iconPath": "images/orders.png",
+        "selectedIconPath": "images/orders_act.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "images/me.png",
+        "selectedIconPath": "images/me_act.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

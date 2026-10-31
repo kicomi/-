@@ -1,0 +1,156 @@
+.notice { min-height: 100vh; background: #f7f4ef; }
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 26rpx 4rpx 18rpx;
+}
+
+.head-title { font-size: 26rpx; font-weight: 650; color: #3c444d; }
+
+.head-action { font-size: 23rpx; color: #2f7d5b; }
+
+.head-action.disabled { color: #c4bfb7; }
+
+.item {
+  position: relative;
+  background: #fff;
+  border-radius: 22rpx;
+  padding: 24rpx 26rpx;
+  margin-bottom: 16rpx;
+}
+
+.item.read { background: #fbfaf7; }
+
+.dot {
+  position: absolute;
+  top: 30rpx;
+  right: 24rpx;
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background: #c0563f;
+}
+
+.item-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.tag {
+  font-size: 19rpx;
+  border-radius: 6rpx;
+  padding: 2rpx 10rpx;
+  margin-right: 12rpx;
+  flex: none;
+}
+
+.title {
+  flex: 1;
+  font-size: 27rpx;
+  font-weight: 600;
+  color: #1b1f23;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.time { font-size: 20rpx; color: #b9b4ab; margin-left: 12rpx; flex: none; }
+
+.content {
+  font-size: 24rpx;
+  color: #5b6470;
+  line-height: 1.65;
+  padding-right: 20rpx;
+}
+
+.item.read .title { color: #5b6470; font-weight: 500; }
+
+.item.read .content { color: #8f9a94; }
+
+.empty-ico { display: block; font-size: 60rpx; margin-bottom: 16rpx; opacity: 0.5; }
+
+/* ---- 详情弹层 ---- */
+.mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 24, 28, 0.42);
+  z-index: 20;
+}
+
+.sheet {
+  position: fixed;
+  left: 24rpx;
+  right: 24rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  border-radius: 28rpx;
+  padding: 36rpx 34rpx 28rpx;
+  z-index: 21;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.sheet-time { font-size: 21rpx; color: #b9b4ab; }
+
+.sheet-title {
+  font-size: 32rpx;
+  font-weight: 650;
+  color: #1b1f23;
+  line-height: 1.4;
+  margin-bottom: 18rpx;
+}
+
+.sheet-body {
+  font-size: 27rpx;
+  color: #4a525c;
+  line-height: 1.8;
+  overflow-y: auto;
+}
+
+.sheet-actions {
+  display: flex;
+  margin-top: 36rpx;
+}
+
+.btn-plain {
+  flex: 1;
+  height: 84rpx;
+  line-height: 84rpx;
+  text-align: center;
+  border-radius: 42rpx;
+  border: 1rpx solid #eee9e1;
+  color: #5b6470;
+  font-size: 27rpx;
+  margin-right: 16rpx;
+}
+
+.btn-main {
+  flex: 1.4;
+  height: 84rpx;
+  line-height: 84rpx;
+  text-align: center;
+  border-radius: 42rpx;
+  background: #2f7d5b;
+  color: #fff;
+  font-size: 27rpx;
+  font-weight: 600;
+}
+
+.more-tip {
+  text-align: center;
+  font-size: 22rpx;
+  color: #b9b4ab;
+  padding: 24rpx 0 12rpx;
+}

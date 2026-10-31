@@ -1,0 +1,55 @@
+<view class="notice">
+  <view class="page">
+    <view class="head" wx:if="{{rows.length}}">
+      <text class="head-title">{{unread > 0 ? unread + ' 条未读' : '全部已读'}}</text>
+      <text class="head-action {{unread === 0 ? 'disabled' : ''}}" bindtap="readAll">全部已读</text>
+      <!-- 通知详情 -->
+  <view class="mask" wx:if="{{detailOpen}}" bindtap="closeDetail"></view>
+  <view class="sheet" wx:if="{{detailOpen && detail}}">
+    <view class="sheet-head">
+      <text class="tag" style="color: {{detail.typeColor}}; background: {{detail.typeBg}}">{{detail.typeLabel}}</text>
+      <text class="sheet-time">{{detail.timeText}}</text>
+    </view>
+
+    <view class="sheet-title">{{detail.title}}</view>
+    <view class="sheet-body">{{detail.content}}</view>
+
+    <view class="sheet-actions">
+      <view class="btn-plain" bindtap="closeDetail">知道了</view>
+      <view class="btn-main" wx:if="{{detail.linkType}}" bindtap="gotoLink">
+        去看看{{detail.linkType === 'order' ? '订单' : '这本书'}} ›
+      </view>
+      <view class="btn-main" wx:elif="{{detail.type === 'system'}}" bindtap="gotoProfile">
+        去看我的资料 ›
+      </view>
+    </view>
+  </view>
+</view>
+
+    <view wx:if="{{loading}}" class="empty">加载中…</view>
+
+    <block wx:else>
+      <view class="item {{item.readFlag === 1 ? 'read' : ''}}"
+            wx:for="{{rows}}" wx:key="id" data-item="{{item}}" bindtap="onTap">
+        <view class="dot" wx:if="{{item.readFlag === 0}}"></view>
+        <view class="item-body">
+          <view class="item-top">
+            <text class="tag" style="color: {{item.typeColor}}; background: {{item.typeBg}}">{{item.typeLabel}}</text>
+            <text class="title">{{item.title}}</text>
+            <text class="time">{{item.timeText}}</text>
+          </view>
+          <view class="content">{{item.content}}</view>
+        </view>
+      </view>
+
+      <view wx:if="{{loadingMore}}" class="more-tip">加载中…</view>
+      <view wx:if="{{!hasMore && rows.length}}" class="more-tip">没有更多了</view>
+
+      <view wx:if="{{!rows.length}}" class="empty">
+        <text class="empty-ico">🔔</text>
+        还没有消息
+订单状态变化、举报处理结果都会通知你
+      </view>
+    </block>
+  </view>
+</view>

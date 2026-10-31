@@ -1,0 +1,245 @@
+{
+  "price": {
+    "rows": [
+      [
+        "原价x固定折扣 (基线)",
+        {
+          "MAE": 13.899,
+          "RMSE": 17.38,
+          "R2": 0.2653,
+          "MAE占原价比例": 24.06
+        }
+      ],
+      [
+        "多元线性回归",
+        {
+          "MAE": 4.12,
+          "RMSE": 5.649,
+          "R2": 0.9224,
+          "MAE占原价比例": 7.13
+        }
+      ],
+      [
+        "随机森林",
+        {
+          "MAE": 3.942,
+          "RMSE": 5.435,
+          "R2": 0.9281,
+          "MAE占原价比例": 6.83
+        }
+      ]
+    ],
+    "cv": {
+      "linear": {
+        "MAE": 3.947,
+        "RMSE": 5.523,
+        "R2": 0.9216,
+        "MAE占原价比例": 6.86
+      },
+      "random_forest": {
+        "MAE": 3.842,
+        "RMSE": 5.364,
+        "R2": 0.9261,
+        "MAE占原价比例": 6.67
+      }
+    },
+    "importance": [
+      [
+        "original_price",
+        0.8592422710349029
+      ],
+      [
+        "condition_level",
+        0.046721031116189846
+      ],
+      [
+        "wear_level",
+        0.042166828771801244
+      ],
+      [
+        "sold_count_30d",
+        0.011963642617647237
+      ],
+      [
+        "seller_history",
+        0.010715871022528183
+      ],
+      [
+        "history_ratio",
+        0.007592158477816174
+      ],
+      [
+        "listing_count",
+        0.007482358120116117
+      ],
+      [
+        "note_flag",
+        0.005968674817774269
+      ],
+      [
+        "book_age",
+        0.00463529608707717
+      ],
+      [
+        "cat_2",
+        0.001704739380334233
+      ],
+      [
+        "cat_4",
+        0.00041337269810978413
+      ],
+      [
+        "cat_5",
+        0.00037480878950017657
+      ],
+      [
+        "cat_8",
+        0.00030879886805358707
+      ],
+      [
+        "cat_1",
+        0.0002696434025681847
+      ],
+      [
+        "cat_3",
+        0.00022179437203241086
+      ],
+      [
+        "cat_7",
+        0.00011139798346084276
+      ],
+      [
+        "cat_6",
+        0.00010731244008768167
+      ]
+    ]
+  },
+  "recall": {
+    "users": 199,
+    "k": 10,
+    "recall_itemcf": 0.1307,
+    "recall_content": 0.2915,
+    "recall_fused": 0.4322,
+    "recall_popularity": 0.0854,
+    "lift_vs_popularity": 406.09
+  },
+  "alpha": [
+    {
+      "alpha": 0.0,
+      "itemcf_weight": 0.0,
+      "content_weight": 1.0,
+      "recall_fused": 0.3015,
+      "recall_itemcf": 0.1307,
+      "recall_content": 0.2915,
+      "recall_popularity": 0.0854
+    },
+    {
+      "alpha": 0.1,
+      "itemcf_weight": 0.1,
+      "content_weight": 0.9,
+      "recall_fused": 0.3166,
+      "recall_itemcf": 0.1307,
+      "recall_content": 0.2915,
+      "recall_popularity": 0.0854
+    },
+    {
+      "alpha": 0.2,
+      "itemcf_weight": 0.2,
+      "content_weight": 0.8,
+      "recall_fused": 0.3317,
+      "recall_itemcf": 0.1307,
+      "recall_content": 0.2915,
+      "recall_popularity": 0.0854
+    },
+    {
+      "alpha": 0.3,
+      "itemcf_weight": 0.3,
+      "content_weight": 0.7,
+      "recall_fused": 0.3568,
+      "recall_itemcf": 0.1307,
+      "recall_content": 0.2915,
+      "recall_popularity": 0.0854
+    },
+    {
+      "alpha": 0.4,
+      "itemcf_weight": 0.4,
+      "content_weight": 0.6,
+      "recall_fused": 0.3769,
+      "recall_itemcf": 0.1307,
+      "recall_content": 0.2915,
+      "recall_popularity": 0.0854
+    },
+    {
+      "alpha": 0.5,
+      "itemcf_weight": 0.5,
+      "content_weight": 0.5,
+      "recall_fused": 0.407,
+      "recall_itemcf": 0.1307,
+      "recall_content": 0.2915,
+      "recall_popularity": 0.0854
+    },
+    {
+      "alpha": 0.6,
+      "itemcf_weight": 0.6,
+      "content_weight": 0.4,
+      "recall_fused": 0.4171,
+      "recall_itemcf": 0.1307,
+      "recall_content": 0.2915,
+      "recall_popularity": 0.0854
+    },
+    {
+      "alpha": 0.65,
+      "itemcf_weight": 0.65,
+      "content_weight": 0.35,
+      "recall_fused": 0.4322,
+      "recall_itemcf": 0.1307,
+      "recall_content": 0.2915,
+      "recall_popularity": 0.0854
+    },
+    {
+      "alpha": 0.7,
+      "itemcf_weight": 0.7,
+      "content_weight": 0.3,
+      "recall_fused": 0.4221,
+      "recall_itemcf": 0.1307,
+      "recall_content": 0.2915,
+      "recall_popularity": 0.0854
+    },
+    {
+      "alpha": 0.8,
+      "itemcf_weight": 0.8,
+      "content_weight": 0.2,
+      "recall_fused": 0.3618,
+      "recall_itemcf": 0.1307,
+      "recall_content": 0.2915,
+      "recall_popularity": 0.0854
+    },
+    {
+      "alpha": 0.9,
+      "itemcf_weight": 0.9,
+      "content_weight": 0.1,
+      "recall_fused": 0.2513,
+      "recall_itemcf": 0.1307,
+      "recall_content": 0.2915,
+      "recall_popularity": 0.0854
+    },
+    {
+      "alpha": 1.0,
+      "itemcf_weight": 1.0,
+      "content_weight": 0.0,
+      "recall_fused": 0.1256,
+      "recall_itemcf": 0.1307,
+      "recall_content": 0.2915,
+      "recall_popularity": 0.0854
+    }
+  ],
+  "best": {
+    "alpha": 0.65,
+    "itemcf_weight": 0.65,
+    "content_weight": 0.35,
+    "recall_fused": 0.4322,
+    "recall_itemcf": 0.1307,
+    "recall_content": 0.2915,
+    "recall_popularity": 0.0854
+  }
+}

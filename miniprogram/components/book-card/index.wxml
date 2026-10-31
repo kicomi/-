@@ -1,0 +1,29 @@
+<view class="bc {{book.priority === 1 ? 'is-priority' : ''}}" bindtap="onTap">
+  <view class="cover">
+    <image wx:if="{{coverSrc}}" class="cover-img {{imgLoaded ? 'loaded' : ''}}" src="{{coverSrc}}"
+           mode="aspectFill" bindload="onImgLoad" lazy-load />
+    <text wx:else class="cover-text">{{initial}}</text>
+  </view>
+
+  <view class="info">
+    <view class="title">{{book.title}}</view>
+
+    <!-- 一行灰字把课程、品相、笔记说清楚，不再堆一排标签 -->
+    <view class="meta">{{metaLine}}</view>
+
+    <view class="price-row">
+      <text class="p-cur"><text class="p-sym">¥</text>{{book.price}}</text>
+      <text class="p-old">¥{{book.originalPrice}}</text>
+      <text class="p-off" wx:if="{{off > 0}}">{{off}}%↓</text>
+    </view>
+
+    <view class="foot">
+      <view class="seller">
+        <text class="s-name">{{book.sellerNickname || '同学'}}</text>
+        <text class="s-dot">·</text>
+        <text class="s-major">{{book.majorName || '本校'}}</text>
+      </view>
+      <text class="match" wx:if="{{book.matchScore}}">匹配 {{book.matchScore}}</text>
+    </view>
+  </view>
+</view>

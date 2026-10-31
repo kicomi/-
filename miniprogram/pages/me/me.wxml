@@ -1,0 +1,144 @@
+<view class="me">
+  <!-- 顶部只留通知与设置，避免和 tabBar 的"我的"重复 -->
+  <view class="topbar">
+    <view class="top-actions" wx:if="{{user}}">
+      <view class="bell" bindtap="goNotice">
+        <text class="bell-ico">🔔</text>
+        <text wx:if="{{noticeUnread > 0}}" class="bell-badge">{{noticeUnread > 99 ? '99+' : noticeUnread}}</text>
+      </view>
+      <view class="gear" bindtap="goProfile">⚙</view>
+    </view>
+  </view>
+
+  <!-- 用户卡 -->
+  <view class="user-card" wx:if="{{user}}">
+    <view class="avatar" bindtap="goProfile">
+      <image wx:if="{{avatarSrc}}" class="avatar-img" src="{{avatarSrc}}" mode="aspectFill" />
+      <text wx:else class="avatar-txt">{{initial}}</text>
+    </view>
+
+    <view class="u-main">
+      <view class="u-row">
+        <text class="u-name">{{user.nickname}}</text>
+        <text class="u-level" style="color: {{credit.color}}; border-color: {{credit.color}}">{{credit.name}}</text>
+      </view>
+      <view class="u-sub">{{user.majorName || '未填写专业'}} · {{user.grade || '—'}} 级</view>
+      <view class="u-sign">{{user.signature || '还没有写个性签名'}}</view>
+    </view>
+  </view>
+
+  <view class="user-card guest" wx:else>
+    <view class="avatar"><text class="avatar-txt">游</text></view>
+    <view class="u-main">
+      <view class="u-row"><text class="u-name">未登录</text></view>
+      <view class="u-sub">登录后可以发布、收藏和下单</view>
+      <view class="login-btn" bindtap="goLogin">立即登录</view>
+    </view>
+  </view>
+
+  <!-- 信用卡 -->
+  <view class="credit-card {{credit.theme}}" wx:if="{{user}}" bindtap="toggleRules" hover-class="card-hover" hover-stay-time="80">
+    <!-- 等级光环：分数越高光越亮 -->
+    <view class="halo" style="background: radial-gradient(circle, {{credit.color}}33 0%, transparent 68%)"></view>
+
+    <view class="c-head">
+      <view class="c-left">
+        <view class="c-gem" style="background: {{credit.color}}"></view>
+        <text class="c-label">信用分</text>
+        <text class="c-score" style="color: {{credit.color}}">{{user.creditScore}}</text>
+      </view>
+      <text class="c-level" style="color: {{credit.color}}; border-color: {{credit.color}}">{{credit.name}}</text>
+    </view>
+
+    <view class="c-track">
+      <view class="c-fill" style="width: {{credit.percent}}%; background: {{credit.color}}"></view>
+    </view>
+    <view class="c-steps">
+      <text class="step {{credit.name === '青铜信用' ? 'on' : ''}}">青铜 70</text>
+      <text class="step {{credit.name === '白银信用' ? 'on' : ''}}">白银 85</text>
+      <text class="step {{credit.name === '黄金信用' ? 'on' : ''}}">黄金 95</text>
+    </view>
+
+    <!-- 特权清单：亮的已解锁，灰的未解锁 -->
+    <view class="perks">
+      <text class="perk {{user.creditScore >= 90 ? 'on' : ''}}">免审核上架</text>
+      <text class="perk {{user.creditScore >= 90 ? 'on' : ''}}">首页优先</text>
+      <text class="perk {{user.creditScore >= 95 ? 'on' : ''}}">专属标识</text>
+    </view>
+
+    <view class="c-foot">
+      <text class="c-more">{{showRules ? '收起规则 ˄' : '查看如何提分 ›'}}</text>
+    </view>
+  </view>
+
+  <!-- 信用规则：内联展开，不跳转 -->
+  <view class="rules" wx:if="{{showRules && user}}">
+    <view class="rule-group-title"><text class="bar green"></text>怎么提高</view>
+    <view class="rule" wx:for="{{creditGain}}" wx:key="title">
+      <text class="rule-name">{{item.title}}</text>
+      <text class="delta plus">{{item.delta}}</text>
+    </view>
+
+    <view class="rule-group-title"><text class="bar red"></text>什么情况会扣分</view>
+    <view class="rule" wx:for="{{creditLoss}}" wx:key="title">
+      <text class="rule-name">{{item.title}}</text>
+      <text class="delta minus">{{item.delta}}</text>
+    </view>
+
+    <view class="rules-foot">信用分 0-100，低于 60 分会被限制发布新书</view>
+  </view>
+
+  <view class="page">
+    <!-- 数据条 -->
+    <view class="stats" wx:if="{{user}}">
+      <view class="stat" data-tab="selling" bindtap="switchTab">
+        <text class="num">{{stats.selling}}</text><text class="lbl">在售</text>
+      </view>
+      <view class="divider"></view>
+      <view class="stat"><text class="num">{{stats.sold}}</text><text class="lbl">已售</text></view>
+      <view class="divider"></view>
+      <view class="stat" data-tab="favorites" bindtap="switchTab">
+        <text class="num">{{stats.fav}}</text><text class="lbl">收藏</text>
+      </view>
+      <view class="divider"></view>
+      <view class="stat">
+        <text class="num">{{stats.views}}</text>
+        <text class="lbl">被浏览</text>
+      </view>
+    </view>
+
+    <!-- 快捷入口 -->
+    <view class="quick" wx:if="{{user}}">
+      <view class="quick-item" bindtap="goChat">
+        <text class="q-ico">💬<text wx:if="{{unread > 0}}" class="q-dot">{{unread}}</text></text>
+        <text class="q-txt">消息</text>
+      </view>
+      <view class="quick-item" bindtap="goCredit">
+        <text class="q-ico">🏅</text><text class="q-txt">信用规则</text>
+      </view>
+      <view class="quick-item" bindtap="goProfile">
+        <text class="q-ico">⚙</text><text class="q-txt">资料</text>
+      </view>
+    </view>
+
+    <!-- 内容 -->
+    <view class="tabs" wx:if="{{user}}">
+      <view class="tab {{tab === 'selling' ? 'on' : ''}}" data-tab="selling" bindtap="switchTab">我的发布</view>
+      <view class="tab {{tab === 'favorites' ? 'on' : ''}}" data-tab="favorites" bindtap="switchTab">我的收藏</view>
+      <view class="tab {{tab === 'history' ? 'on' : ''}}" data-tab="history" bindtap="switchTab">浏览历史</view>
+    </view>
+
+    <block wx:if="{{user}}">
+      <view wx:if="{{loading}}" class="empty">加载中…</view>
+      <block wx:else>
+        <book-card wx:for="{{list}}" wx:key="id" book="{{item}}" bind:tap="onBookTap" />
+        <view wx:if="{{!list.length}}" class="empty">
+          {{tab === 'selling' ? '还没有发布过闲置' : '还没有收藏的书'}}
+        </view>
+      </block>
+    </block>
+    <view wx:else class="empty">登录后查看你的闲置和收藏</view>
+
+    <view class="logout" wx:if="{{user}}" bindtap="logout">退出登录</view>
+  </view>
+</view>

@@ -1,0 +1,41 @@
+# ---------- 依赖与构建产物 ----------
+node_modules/
+dist/
+target/
+*.class
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# ---------- 运行日志 ----------
+logs/
+*.log
+nohup.out
+
+# ---------- 上传的用户文件 ----------
+backend/uploads/
+!backend/uploads/.gitkeep
+
+# ---------- IDE ----------
+.idea/
+.vscode/
+*.iml
+*.swp
+.DS_Store
+Thumbs.db
+
+# ---------- 数据库导出 / 本地配置 ----------
+*.dump
+*.sql.gz
+application-local.yml
+project.private.config.json
+
+# ---------- 算法中间产物 ----------
+algorithm/models/*.joblib
+algorithm/outputs/
+algorithm/reports/*.png
+
+# ---------- 临时 ----------
+*.tmp
+*.bak

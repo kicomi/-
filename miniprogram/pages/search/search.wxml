@@ -1,0 +1,65 @@
+<view class="search-page">
+  <view class="head">
+    <view class="bar">
+      <input class="input" value="{{keyword}}" placeholder="书名 / 作者 / ISBN"
+             confirm-type="search" bindinput="onInput" bindconfirm="onSearch" />
+      <text class="go" bindtap="onSearch">搜索</text>
+    </view>
+
+    <scroll-view class="chips" scroll-x enable-flex>
+      <view class="chip {{sort === 'newest' ? 'on' : ''}}" data-sort="newest" bindtap="onSort">最新</view>
+      <view class="chip {{sort === 'hot' ? 'on' : ''}}" data-sort="hot" bindtap="onSort">热门</view>
+      <view class="chip {{sort === 'priceAsc' ? 'on' : ''}}" data-sort="priceAsc" bindtap="onSort">价格低</view>
+      <view class="chip {{sort === 'priceDesc' ? 'on' : ''}}" data-sort="priceDesc" bindtap="onSort">价格高</view>
+      <view class="chip {{conditionMin ? 'on' : ''}}" bindtap="toggleCondition">九成新以上</view>
+      <view class="chip {{cheap ? 'on' : ''}}" bindtap="toggleCheap">20 元内</view>
+    </scroll-view>
+  </view>
+
+  <!-- 没输入关键词时展示历史与热词：列表式，比一排大胶囊紧凑得多 -->
+  <view class="suggest" wx:if="{{!keyword}}">
+    <block wx:if="{{history.length}}">
+      <view class="sug-head">
+        <text class="sug-title">最近搜索</text>
+        <text class="sug-clear" bindtap="clearHistory">清空</text>
+      </view>
+      <view class="his-row">
+        <text class="his-chip" wx:for="{{history}}" wx:key="*this" data-word="{{item}}" bindtap="tapWord">{{item}}</text>
+      </view>
+    </block>
+
+    <block wx:if="{{hot.length}}">
+      <view class="sug-head">
+        <text class="sug-title">大家都在找</text>
+        <text class="sug-sub">按在售书籍的热度</text>
+      </view>
+      <view class="hot-list">
+        <view class="hot-row" wx:for="{{hot}}" wx:key="keyword" data-word="{{item.keyword}}" bindtap="tapWord">
+          <text class="rank {{index < 3 ? 'top' : ''}}">{{index + 1}}</text>
+          <text class="hot-name">{{item.keyword}}</text>
+          <text class="hot-cnt">{{item.count}} 本</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="page">
+    <view class="result">
+      <text>共 {{total}} 本</text>
+      <text wx:if="{{isLogin}}" class="hint">已按匹配度加权</text>
+    </view>
+
+    <view wx:if="{{loading}}" class="empty">搜索中…</view>
+    <block wx:else>
+      <book-card wx:for="{{rows}}" wx:key="id" book="{{item}}" bind:tap="onBookTap" />
+      <view wx:if="{{!rows.length && !loading}}" class="empty-result">
+        <text class="er-title">没有找到「{{keyword}}」相关的书</text>
+        <text class="er-sub">换个词试试，或者看看大家都在找什么</text>
+        <view class="er-chips">
+          <text class="er-chip" wx:for="{{hot}}" wx:key="keyword" data-word="{{item.keyword}}"
+                bindtap="tapWord">{{item.keyword}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,54 @@
+<view class="reg">
+  <view class="page">
+    <view class="card">
+      <view class="field">
+        <text class="label">手机号 / 学号 *</text>
+        <input value="{{form.account}}" data-key="account" bindinput="onField" placeholder="作为登录账号" />
+      </view>
+      <view class="field">
+        <text class="label">密码 *</text>
+        <input password value="{{form.password}}" data-key="password" bindinput="onField" placeholder="至少 6 位" />
+      </view>
+      <view class="field">
+        <text class="label">昵称 *</text>
+        <input value="{{form.nickname}}" data-key="nickname" bindinput="onField" placeholder="同学你好，怎么称呼" />
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="card-title">实名信息（仅管理员可见）</view>
+      <view class="field">
+        <text class="label">真实姓名</text>
+        <input value="{{form.realName}}" data-key="realName" bindinput="onField" placeholder="用于线下交易核验" />
+      </view>
+      <view class="field">
+        <text class="label">学号</text>
+        <input value="{{form.studentNo}}" data-key="studentNo" bindinput="onField" placeholder="2023xxxxxx" />
+      </view>
+      <view class="field">
+        <text class="label">专业（可直接输入）</text>
+        <input value="{{form.customMajor}}" data-key="customMajor" bindinput="onField"
+               placeholder="例如：数据科学与大数据技术" />
+        <view class="major-chips">
+          <text class="major-chip" wx:for="{{majors}}" wx:key="id"
+                data-name="{{item.name}}" bindtap="pickMajor">{{item.name}}</text>
+        </view>
+      </view>
+      <view class="field">
+        <text class="label">年级</text>
+        <input value="{{form.grade}}" data-key="grade" bindinput="onField" placeholder="2024" />
+      </view>
+      <view class="field" style="margin-bottom:0">
+        <text class="label">性别</text>
+        <picker mode="selector" range="{{genders}}" value="{{genderIndex}}" bindchange="onGender">
+          <view class="picker">{{genders[genderIndex]}}</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="btn btn-primary" bindtap="submit" disabled="{{submitting}}">
+      {{submitting ? '注册中…' : '注册并登录'}}
+    </view>
+    <view class="foot">已有账号？<text class="link" bindtap="goLogin">返回登录</text></view>
+  </view>
+</view>

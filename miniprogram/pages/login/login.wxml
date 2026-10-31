@@ -1,0 +1,44 @@
+<view class="login">
+  <view class="top">
+    <view class="logo">书</view>
+    <view class="title">校园二手书</view>
+    <view class="sub">同校同专业，把闲置教材传给下一个人</view>
+  </view>
+
+  <!-- 主操作：新用户一看就知道先干什么 -->
+  <view class="actions">
+    <view class="btn-wechat" bindtap="quickLogin">
+      <text class="wx-dot"></text>
+      微信一键登录
+    </view>
+    <view class="hint">首次使用会自动创建账号，从 80 分信用起步</view>
+
+    <view class="other-row">
+      <text class="link" bindtap="goRegister">注册新账号</text>
+      <text class="split">|</text>
+      <text class="link" bindtap="toggleAccounts">账号密码登录</text>
+    </view>
+  </view>
+
+  <!-- 演示账号：默认收起，避免新用户被三张卡片吓到 -->
+  <view class="demo-toggle" bindtap="toggleAccounts">
+    {{showAccounts ? '收起演示账号' : '用演示账号体验'}}
+    <text class="caret">{{showAccounts ? '˄' : '˅'}}</text>
+  </view>
+
+  <view class="demo" wx:if="{{showAccounts}}">
+    <view class="demo-tip">答辩演示用，三种角色对应不同的数据状态</view>
+    <view class="account" wx:for="{{accounts}}" wx:key="code"
+          data-code="{{item.code}}" bindtap="onLogin">
+      <view class="acc-left">
+        <view class="acc-name">{{item.name}}</view>
+        <view class="acc-desc">{{item.desc}}</view>
+      </view>
+      <view class="acc-go">进入 ›</view>
+    </view>
+  </view>
+
+  <view class="foot">
+    <text class="foot-text">登录即表示同意校园二手书的使用规范</text>
+  </view>
+</view>

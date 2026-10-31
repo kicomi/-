@@ -1,0 +1,429 @@
+.detail {
+  padding-bottom: 170rpx;
+  background: #f7f4ef;
+}
+
+/* ---- 图片画廊 ---- */
+.gallery {
+  position: relative;
+  background: #f0ece4;
+}
+
+.gallery-swiper { height: 560rpx; }
+
+.gallery-img { width: 100%; height: 560rpx; }
+
+.gallery-empty {
+  height: 560rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(150deg, #dfe9e2, #cfdcd2);
+}
+
+.ghost-char {
+  font-size: 140rpx;
+  color: rgba(47, 125, 91, 0.35);
+  font-family: serif;
+  line-height: 1;
+}
+
+.ghost-tip {
+  margin-top: 20rpx;
+  font-size: 22rpx;
+  color: rgba(47, 125, 91, 0.55);
+}
+
+.gallery-count {
+  position: absolute;
+  right: 24rpx;
+  bottom: 24rpx;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 22rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.gallery-cond {
+  position: absolute;
+  left: 24rpx;
+  bottom: 24rpx;
+  background: rgba(47, 125, 91, 0.9);
+  color: #fff;
+  font-size: 22rpx;
+  padding: 4rpx 18rpx;
+  border-radius: 20rpx;
+}
+
+/* ---- 通用卡片 ---- */
+.card {
+  margin: 0 24rpx 20rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 26rpx;
+}
+
+.main-card { margin-top: -28rpx; position: relative; z-index: 2; }
+
+.card-title {
+  font-size: 28rpx;
+  font-weight: 650;
+  margin-bottom: 20rpx;
+}
+
+.title {
+  font-size: 34rpx;
+  font-weight: 650;
+  line-height: 1.35;
+  margin-bottom: 10rpx;
+}
+
+.sub { font-size: 24rpx; color: #9aa3ad; margin-bottom: 16rpx; }
+
+.price-row { display: flex; align-items: baseline; flex-wrap: wrap; }
+
+.price.big { font-size: 48rpx; }
+
+.price { font-size: 30rpx; font-weight: 700; color: #2f7d5b; }
+
+.price-origin {
+  font-size: 24rpx;
+  color: #b9b4ab;
+  text-decoration: line-through;
+  margin-left: 14rpx;
+}
+
+.save {
+  font-size: 22rpx;
+  color: #c0563f;
+  background: #fbeeeb;
+  border-radius: 8rpx;
+  padding: 2rpx 12rpx;
+  margin-left: 12rpx;
+}
+
+.tags { margin-top: 18rpx; }
+
+.chip {
+  display: inline-block;
+  font-size: 22rpx;
+  color: #5b6470;
+  background: #f5f2ec;
+  border-radius: 8rpx;
+  padding: 4rpx 14rpx;
+  margin-right: 12rpx;
+}
+
+.chip.warm { color: #2f7d5b; background: #e9f2ed; }
+
+/* ---- 书况 ---- */
+.dim { display: flex; align-items: center; margin-bottom: 18rpx; }
+
+.dim-label { width: 70rpx; font-size: 26rpx; color: #5b6470; }
+
+.dim-bar { display: flex; }
+
+.dim-cell {
+  width: 32rpx;
+  height: 10rpx;
+  border-radius: 6rpx;
+  background: #eee9e1;
+  margin-right: 6rpx;
+}
+
+.dim-cell.on { background: #2f7d5b; }
+
+.dim-text { margin-left: auto; font-size: 24rpx; color: #9aa3ad; }
+
+.selling {
+  margin-top: 18rpx;
+  padding-top: 18rpx;
+  border-top: 1rpx dashed #eee9e1;
+  font-size: 24rpx;
+  color: #9aa3ad;
+}
+
+.hl { color: #2f7d5b; font-weight: 600; }
+
+/* ---- 卖家 ---- */
+.seller { display: flex; align-items: center; }
+
+.avatar {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 50%;
+  background: #e9f2ed;
+  color: #2f7d5b;
+  text-align: center;
+  line-height: 84rpx;
+  font-weight: 600;
+  margin-right: 20rpx;
+  flex: none;
+  overflow: hidden;
+}
+
+.avatar-img { width: 100%; height: 100%; }
+
+.seller-name { font-size: 30rpx; font-weight: 600; }
+
+.seller-major { font-size: 22rpx; color: #9aa3ad; margin-top: 4rpx; }
+
+.credit {
+  margin-left: auto;
+  font-size: 22rpx;
+  color: #2f7d5b;
+  background: #e9f2ed;
+  border-radius: 8rpx;
+  padding: 4rpx 14rpx;
+}
+
+.seller-stats {
+  display: flex;
+  align-items: center;
+  background: #f9f7f3;
+  border-radius: 18rpx;
+  padding: 20rpx 0;
+  margin-top: 20rpx;
+}
+
+.s-stat { flex: 1; display: flex; flex-direction: column; align-items: center; }
+
+.s-divider { width: 1rpx; height: 36rpx; background: #ece7df; }
+
+.s-num { font-size: 30rpx; font-weight: 700; color: #1b1f23; }
+
+.s-lbl { font-size: 20rpx; color: #9aa3ad; margin-top: 4rpx; }
+
+.review {
+  margin-top: 20rpx;
+  padding: 18rpx 20rpx;
+  background: #f9f7f3;
+  border-radius: 16rpx;
+}
+
+.review-head { display: flex; justify-content: space-between; margin-bottom: 8rpx; }
+
+.review-from { font-size: 24rpx; color: #5b6470; }
+
+.review-star { font-size: 22rpx; color: #d9a441; }
+
+.review-text { font-size: 24rpx; color: #3c444d; line-height: 1.6; }
+
+.review-empty {
+  margin-top: 18rpx;
+  font-size: 24rpx;
+  color: #b9b4ab;
+  text-align: center;
+  padding: 12rpx 0;
+}
+
+.contact {
+  margin-top: 22rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  text-align: center;
+  border-radius: 38rpx;
+  border: 1rpx solid #2f7d5b;
+  color: #2f7d5b;
+  font-size: 28rpx;
+  background: #f4faf7;
+}
+
+.desc { font-size: 26rpx; color: #5b6470; line-height: 1.7; }
+
+/* ---- 相似 ---- */
+.similar { white-space: nowrap; }
+
+.sim { width: 156rpx; margin-right: 20rpx; display: inline-block; }
+
+.sim-cover {
+  width: 156rpx;
+  height: 204rpx;
+  border-radius: 14rpx;
+  background: linear-gradient(150deg, #dfe9e2, #cfdcd2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: serif;
+  color: rgba(47, 125, 91, 0.5);
+  font-size: 44rpx;
+}
+
+.sim-img { width: 100%; height: 100%; }
+
+.sim-title {
+  font-size: 22rpx;
+  line-height: 1.35;
+  height: 60rpx;
+  overflow: hidden;
+  margin: 8rpx 0 4rpx;
+  white-space: normal;
+}
+
+.price.small { font-size: 26rpx; }
+
+/* ---- 底部栏 ---- */
+.bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 128rpx;
+  background: #fff;
+  border-top: 1rpx solid #eee9e1;
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+}
+
+.fav {
+  width: 130rpx;
+  height: 84rpx;
+  border-radius: 42rpx;
+  border: 1rpx solid #eee9e1;
+  text-align: center;
+  line-height: 84rpx;
+  font-size: 26rpx;
+  color: #5b6470;
+  margin-right: 14rpx;
+}
+
+.fav.on { color: #2f7d5b; border-color: #2f7d5b; background: #e9f2ed; }
+
+.bargain {
+  width: 130rpx;
+  height: 84rpx;
+  border-radius: 42rpx;
+  border: 1rpx solid #e2a33c;
+  text-align: center;
+  line-height: 84rpx;
+  font-size: 26rpx;
+  color: #b8822a;
+  background: #fdf6e9;
+  margin-right: 14rpx;
+}
+
+.buy { flex: 1; }
+.buy.disabled { background: #d9d5cd; color: #fff; }
+
+/* ---- 弹层 ---- */
+.sheet-mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 24, 28, 0.42);
+  z-index: 20;
+}
+
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f7f4ef;
+  border-radius: 36rpx 36rpx 0 0;
+  padding: 36rpx 32rpx 48rpx;
+  z-index: 21;
+}
+
+.sheet-title { font-size: 30rpx; font-weight: 650; margin-bottom: 24rpx; }
+
+.picker {
+  background: #fff;
+  border: 1rpx solid #eee9e1;
+  border-radius: 20rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+}
+
+.ta { height: 140rpx; }
+
+.bargain-tip {
+  font-size: 24rpx;
+  color: #9aa3ad;
+  margin-bottom: 22rpx;
+}
+
+.bargain-input {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1rpx solid #eee9e1;
+  border-radius: 20rpx;
+  padding: 0 24rpx;
+  height: 96rpx;
+  margin-bottom: 28rpx;
+}
+
+.yuan { font-size: 34rpx; color: #2f7d5b; font-weight: 700; margin-right: 10rpx; }
+
+.bargain-input input { flex: 1; font-size: 32rpx; height: 96rpx; }
+
+/* ---- 举报 ---- */
+.report-entry {
+  text-align: center;
+  font-size: 24rpx;
+  color: #b9b4ab;
+  padding: 10rpx 0 36rpx;
+  text-decoration: underline;
+}
+
+.report-tip { font-size: 24rpx; color: #9aa3ad; margin-bottom: 20rpx; }
+
+.reason-list { display: flex; flex-wrap: wrap; margin-bottom: 22rpx; }
+
+.reason {
+  font-size: 24rpx;
+  color: #5b6470;
+  background: #fff;
+  border: 1rpx solid #eee9e1;
+  border-radius: 26rpx;
+  padding: 10rpx 24rpx;
+  margin: 0 14rpx 14rpx 0;
+}
+
+.reason.on { color: #c0563f; background: #fbeeeb; border-color: #e8c4bb; }
+
+.report-ta { height: 120rpx; }
+
+.review-imgs {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 12rpx;
+}
+
+.review-img {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 10rpx;
+  margin: 0 12rpx 12rpx 0;
+  background: #eee9e1;
+}
+
+.all-reviews {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16rpx;
+  padding: 18rpx 20rpx;
+  background: #f9f7f3;
+  border-radius: 14rpx;
+  font-size: 24rpx;
+  color: #5b6470;
+}
+
+.all-reviews .arrow { color: #2f7d5b; }
+
+.off-tag {
+  font-size: 20rpx;
+  color: #c0563f;
+  background: #fbeeeb;
+  border-radius: 6rpx;
+  padding: 3rpx 12rpx;
+  margin-left: 12rpx;
+}
+
+.go-arrow { color: #c8c2b8; font-size: 26rpx; }

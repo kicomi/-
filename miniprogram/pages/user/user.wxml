@@ -1,0 +1,82 @@
+<view class="user">
+  <block wx:if="{{profile}}">
+    <!-- 头部：渐变封面 + 头像压边 -->
+    <view class="banner">
+      <view class="banner-mask"></view>
+      <view class="avatar">
+        <image wx:if="{{profile.avatar}}" class="avatar-img" src="{{profile.avatar}}" mode="aspectFill" />
+        <text wx:else>{{profile.nickname[0]}}</text>
+      </view>
+    </view>
+
+    <view class="head">
+      <view class="name-row">
+        <text class="name">{{profile.nickname}}</text>
+        <text class="lv">{{levelName}}</text>
+      </view>
+      <text class="sub">{{profile.majorName || '未填写专业'}}<text wx:if="{{profile.grade}}"> · {{profile.grade}} 级</text></text>
+
+      <view class="credit-bar">
+        <text class="cb-label">信用分</text>
+        <text class="cb-score">{{profile.creditScore}}</text>
+        <view class="cb-track"><view class="cb-fill" style="width: {{creditPercent}}%"></view></view>
+      </view>
+    </view>
+
+    <!-- 数据 -->
+    <view class="stats">
+      <view class="stat"><text class="num">{{profile.soldCount}}</text><text class="lbl">已成交</text></view>
+      <view class="line"></view>
+      <view class="stat"><text class="num">{{profile.goodRate}}%</text><text class="lbl">好评率</text></view>
+      <view class="line"></view>
+      <view class="stat"><text class="num">{{profile.onSaleCount}}</text><text class="lbl">在售</text></view>
+      <view class="line"></view>
+      <view class="stat"><text class="num">{{profile.ratingAvg}}</text><text class="lbl">评分</text></view>
+    </view>
+
+    <!-- 分段切换 -->
+    <view class="seg">
+      <view class="seg-item {{tab === 'selling' ? 'on' : ''}}" data-tab="selling" bindtap="switchTab">
+        在售 {{books.length}}
+      </view>
+      <view class="seg-item {{tab === 'review' ? 'on' : ''}}" data-tab="review" bindtap="switchTab">
+        评价 {{profile.reviews.length}}
+      </view>
+    </view>
+
+    <!-- 在售：两列瀑布 -->
+    <view class="grid" wx:if="{{tab === 'selling'}}">
+      <view class="gcard" wx:for="{{books}}" wx:key="id" data-id="{{item.id}}" bindtap="goBook">
+        <view class="gcover">
+          <image wx:if="{{item.coverImg}}" class="gimg" src="{{item.coverImg}}" mode="aspectFill" lazy-load />
+          <text wx:else class="gletter">{{item.title[0]}}</text>
+        </view>
+        <view class="gtitle">{{item.title}}</view>
+        <view class="gprice">¥{{item.price}}</view>
+      </view>
+      <view class="empty" wx:if="{{!books.length}}">TA 还没有在卖的书</view>
+    </view>
+
+    <!-- 评价 -->
+    <view class="rlist" wx:if="{{tab === 'review'}}">
+      <view class="rv" wx:for="{{profile.reviews}}" wx:key="id">
+        <view class="rv-head">
+          <view class="rv-avatar">{{item.initial}}</view>
+          <text class="rv-name">{{item.fromNickname || '同学'}}</text>
+          <view class="rv-stars">
+            <text class="st {{index < item.rating ? 'on' : ''}}" wx:for="{{[1,2,3,4,5]}}" wx:for-item="n"
+                  wx:for-index="index" wx:key="*this">★</text>
+          </view>
+        </view>
+        <text class="rv-text">{{item.content || '（没有填写内容）'}}</text>
+      </view>
+      <view class="empty" wx:if="{{!profile.reviews.length}}">TA 还没有收到评价</view>
+    </view>
+  </block>
+
+  <view class="empty" wx:elif="{{!loading}}">用户不存在或已注销</view>
+</view>
+
+<view class="fab" bindtap="goChat">
+  <text>私信 TA</text>
+</view>

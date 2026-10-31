@@ -1,0 +1,144 @@
+.reviews { min-height: 100vh; background: #f7f4ef; padding: 0 24rpx 40rpx; box-sizing: border-box; }
+
+/* ---- 概况 ---- */
+.summary {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 28rpx 26rpx;
+  margin: 24rpx 0 20rpx;
+}
+
+.sum-left {
+  width: 200rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1rpx solid #f0ebe3;
+}
+
+.avg { font-size: 64rpx; font-weight: 700; color: #2f7d5b; line-height: 1; }
+
+.sum-total { font-size: 21rpx; color: #9aa3ad; margin-top: 10rpx; }
+
+.sum-bars { flex: 1; padding-left: 26rpx; }
+
+.bar-row { display: flex; align-items: center; margin-bottom: 8rpx; }
+
+.bar-label { font-size: 20rpx; color: #b9b4ab; width: 60rpx; }
+
+.bar-track {
+  flex: 1;
+  height: 10rpx;
+  border-radius: 5rpx;
+  background: #f0ebe3;
+  overflow: hidden;
+  margin: 0 12rpx;
+}
+
+.bar-fill { height: 100%; border-radius: 5rpx; background: #e2a33c; }
+
+.bar-count { font-size: 20rpx; color: #b9b4ab; width: 40rpx; text-align: right; }
+
+/* ---- 评价条目 ---- */
+.item {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 26rpx;
+  margin-bottom: 18rpx;
+}
+
+.item-head { display: flex; align-items: center; margin-bottom: 14rpx; }
+
+.avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background: #e9f2ed;
+  color: #2f7d5b;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+  flex: none;
+}
+
+.head-main { flex: 1; }
+
+.nick { font-size: 25rpx; color: #3c444d; }
+
+.stars { display: flex; margin-top: 4rpx; }
+
+.star { font-size: 22rpx; color: #e6e1d8; margin-right: 2rpx; }
+
+.star.on { color: #e2a33c; }
+
+.time { font-size: 20rpx; color: #c4bfb7; }
+
+.content { font-size: 27rpx; color: #3c444d; line-height: 1.65; }
+
+.imgs { display: flex; flex-wrap: wrap; margin-top: 14rpx; }
+
+.img { width: 150rpx; height: 150rpx; border-radius: 12rpx; margin: 0 12rpx 12rpx 0; background: #eee9e1; }
+
+.more { text-align: center; font-size: 22rpx; color: #b9b4ab; padding: 20rpx 0; }
+
+/* ---- 骨架屏 ---- */
+.sk { background: #fff; border-radius: 24rpx; padding: 26rpx; margin-bottom: 18rpx; }
+
+.sk-line { height: 22rpx; border-radius: 8rpx; background: #eef1f0; margin-bottom: 14rpx; animation: rv-shine 1.4s ease-in-out infinite; }
+
+.sk-line.w90 { width: 90%; }
+.sk-line.w60 { width: 60%; }
+.sk-line.w30 { width: 30%; }
+
+@keyframes rv-shine {
+  0% { opacity: .55; }
+  50% { opacity: 1; }
+  100% { opacity: .55; }
+}
+
+/* ---- 空状态：几何插图 ---- */
+.empty { display: flex; flex-direction: column; align-items: center; padding: 100rpx 40rpx; }
+
+.empty-art { position: relative; width: 160rpx; height: 160rpx; margin-bottom: 30rpx; }
+
+.art-book {
+  position: absolute;
+  left: 34rpx;
+  top: 20rpx;
+  width: 92rpx;
+  height: 120rpx;
+  border: 4rpx solid #d9d3c8;
+  border-radius: 10rpx;
+  background: #fff;
+}
+
+.art-book::after {
+  content: '';
+  position: absolute;
+  left: 16rpx;
+  top: 20rpx;
+  width: 40rpx;
+  height: 4rpx;
+  background: #e6e1d8;
+  box-shadow: 0 16rpx 0 #e6e1d8, 0 32rpx 0 #e6e1d8;
+}
+
+.art-line {
+  position: absolute;
+  left: 20rpx;
+  bottom: 6rpx;
+  width: 120rpx;
+  height: 6rpx;
+  border-radius: 3rpx;
+  background: #e6e1d8;
+}
+
+.art-line.short { width: 70rpx; left: 45rpx; bottom: -14rpx; }
+
+.empty-title { font-size: 27rpx; color: #8f9a94; font-weight: 600; }
+
+.empty-sub { font-size: 22rpx; color: #b9b4ab; margin-top: 10rpx; text-align: center; line-height: 1.6; }

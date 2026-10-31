@@ -1,0 +1,76 @@
+<view class="chat">
+  <!-- 会话列表 -->
+  <block wx:if="{{mode === 'list'}}">
+    <view class="page">
+      <view class="conv" wx:for="{{conversations}}" wx:key="peerId"
+            data-item="{{item}}" bindtap="openConversation">
+        <view class="conv-avatar">
+          <image wx:if="{{item.avatarSrc}}" class="avatar-img" src="{{item.avatarSrc}}" mode="aspectFill" />
+          <text wx:else>{{item.initial}}</text>
+        </view>
+        <view class="conv-main">
+          <view class="conv-top">
+            <text class="conv-name">{{item.peerNickname}}</text>
+            <text class="conv-time">{{item.lastTime}}</text>
+          </view>
+          <view class="conv-bottom">
+            <text class="conv-last">{{item.lastContent}}</text>
+            <text wx:if="{{item.unread > 0}}" class="badge">{{item.unread}}</text>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{!conversations.length}}" class="empty">还没有聊天记录
+在书籍详情页联系卖家就能开始</view>
+    </view>
+  </block>
+
+  <!-- 对话 -->
+  <block wx:else>
+    <!-- 顶部书籍条：点一下回到这本书 -->
+    <view class="book-bar" wx:if="{{bookTitle}}" bindtap="goBook">
+      <text class="book-tag">在聊</text>
+      <text class="book-name">《{{bookTitle}}》</text>
+      <text class="book-arrow">›</text>
+    </view>
+
+    <scroll-view class="msgs" scroll-y scroll-into-view="{{scrollTo}}" scroll-with-animation>
+      <view wx:for="{{messages}}" wx:key="id" id="msg-{{index}}" class="msg">
+        <view class="msg-row {{item.fromUserId === myId ? 'mine' : 'theirs'}}">
+          <!-- 对方：只保留头像，不再显示名字 -->
+          <view class="who" wx:if="{{item.fromUserId !== myId}}">
+            <view class="avatar-sm">
+              <image wx:if="{{peerAvatar}}" class="avatar-img" src="{{peerAvatar}}" mode="aspectFill" />
+              <text wx:else>{{peerInitial}}</text>
+            </view>
+          </view>
+
+          <view class="msg-main">
+            <view class="bubble">{{item.content}}</view>
+            <text class="time">{{item.createdAt}}</text>
+          </view>
+
+          <!-- 自己：同样只有头像 -->
+          <view class="who" wx:if="{{item.fromUserId === myId}}">
+            <view class="avatar-sm">
+              <image wx:if="{{myAvatar}}" class="avatar-img" src="{{myAvatar}}" mode="aspectFill" />
+              <text wx:else>{{myInitial}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{!messages.length}}" class="empty">发条消息打个招呼吧</view>
+    </scroll-view>
+
+    <view class="quick-bar" wx:if="{{showQuick}}">
+      <text class="quick-item" wx:for="{{quickPhrases}}" wx:key="*this"
+            data-text="{{item}}" bindtap="usePhrase">{{item}}</text>
+    </view>
+
+    <view class="input-bar">
+      <view class="quick-toggle" bindtap="toggleQuick">≡</view>
+      <input class="msg-input" value="{{input}}" bindinput="onInput" confirm-type="send"
+             bindconfirm="send" placeholder="说点什么…" />
+      <view class="send {{sending ? 'disabled' : ''}}" bindtap="send">发送</view>
+    </view>
+  </block>
+</view>

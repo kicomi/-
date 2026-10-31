@@ -1,0 +1,377 @@
+.tabs {
+  display: flex;
+  padding: 24rpx 32rpx 16rpx;
+}
+
+.tab {
+  font-size: 28rpx;
+  color: #9aa3ad;
+  margin-right: 40rpx;
+  padding-bottom: 12rpx;
+  position: relative;
+}
+
+.tab.on {
+  color: #1b1f23;
+  font-weight: 650;
+}
+
+.tab.on::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 6rpx;
+  border-radius: 4rpx;
+  background: #2f7d5b;
+}
+
+.order {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 24rpx 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.o-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #9aa3ad;
+  padding-bottom: 18rpx;
+  border-bottom: 1rpx solid #eee9e1;
+}
+
+.status.s-2 { color: #2f7d5b; }
+.status.s-1 { color: #2f7d5b; }
+.status.s-0 { color: #c9962e; }
+.status.s-3 { color: #9aa3ad; }
+
+.o-body {
+  display: flex;
+  align-items: center;
+  padding: 22rpx 0;
+}
+
+.o-cover-img { width: 100%; height: 100%; display: block; }
+
+.o-cover {
+  width: 92rpx;
+  height: 124rpx;
+  overflow: hidden;
+  border-radius: 14rpx;
+  background: linear-gradient(150deg, #dfe9e2, #cfdcd2);
+  color: rgba(47, 125, 91, 0.5);
+  text-align: center;
+  line-height: 124rpx;
+  font-family: serif;
+  font-size: 36rpx;
+  margin-right: 20rpx;
+  flex: none;
+}
+
+.o-info { flex: 1; min-width: 0; }
+
+.o-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.o-meta {
+  font-size: 24rpx;
+  color: #9aa3ad;
+  margin-top: 4rpx;
+}
+
+.o-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 18rpx;
+  border-top: 1rpx solid #eee9e1;
+}
+
+.mini {
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 28rpx;
+  border-radius: 30rpx;
+  border: 1rpx solid #eee9e1;
+  font-size: 26rpx;
+  color: #5b6470;
+  margin-left: 16rpx;
+  background: #fff;
+}
+
+.mini.primary {
+  background: #2f7d5b;
+  border-color: #2f7d5b;
+  color: #fff;
+}
+
+.done {
+  font-size: 24rpx;
+  color: #9aa3ad;
+}
+
+/* 时间轴节点用了 z-index(1/2)，弹层不设就会被子元素盖住 */
+.mask {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgba(20, 24, 28, 0.42);
+}
+
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 21;
+  background: #f7f4ef;
+  border-radius: 36rpx 36rpx 0 0;
+  padding: 36rpx 32rpx 48rpx;
+}
+
+.sheet-title {
+  font-size: 30rpx;
+  font-weight: 650;
+  margin-bottom: 24rpx;
+}
+
+.stars { margin-bottom: 24rpx; }
+
+.star {
+  font-size: 52rpx;
+  color: #e2e1dc;
+  margin-right: 12rpx;
+}
+
+.star.on { color: #e2a33c; }
+
+.ta {
+  height: 160rpx;
+  background: #fff;
+  border: 1rpx solid #eee9e1;
+  border-radius: 20rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+}
+
+/* ---- 状态时间轴 ---- */
+.timeline {
+  display: flex;
+  padding: 22rpx 0 6rpx;
+  border-top: 1rpx solid #f4f1eb;
+  margin-top: 4rpx;
+}
+
+.tl-node {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.tl-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: #e2ddd4;
+  margin-bottom: 10rpx;
+  z-index: 2;
+}
+
+.tl-dot.done { background: #2f7d5b; }
+
+/* 已完成节点加一圈光晕，视觉上"亮"起来 */
+.tl-dot.done::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: rgba(47, 125, 91, 0.25);
+  transform: scale(1.8);
+}
+
+.tl-dot.cancel { background: #c0563f; }
+
+.tl-line {
+  position: absolute;
+  top: 7rpx;
+  height: 2rpx;
+  background: #e2ddd4;
+  width: 50%;
+  z-index: 1;
+}
+
+.tl-line.left { left: 0; }
+
+.tl-line.right { right: 0; }
+
+.tl-line.hide { display: none; }
+
+.tl-line.red { background: #e6c4bc; }
+
+.tl-name {
+  font-size: 22rpx;
+  color: #b9b4ab;
+}
+
+.tl-name.done { color: #1b1f23; font-weight: 600; }
+
+.tl-name.cancel { color: #c0563f; font-weight: 600; }
+
+.tl-time {
+  font-size: 20rpx;
+  color: #c4bfb7;
+  margin-top: 4rpx;
+}
+
+/* ---- 骨架屏 ---- */
+@keyframes sk-shine {
+  0% { opacity: 0.55; }
+  50% { opacity: 1; }
+  100% { opacity: 0.55; }
+}
+
+.sk-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 26rpx;
+  margin-bottom: 20rpx;
+}
+
+.sk-line, .sk-cover, .sk-lines > view {
+  background: #eef1f0;
+  border-radius: 8rpx;
+  animation: sk-shine 1.4s ease-in-out infinite;
+}
+
+.sk-line { height: 24rpx; margin-bottom: 14rpx; }
+.sk-line.w90 { width: 90%; }
+.sk-line.w70 { width: 70%; }
+.sk-line.w50 { width: 50%; }
+.sk-line.w40 { width: 40%; }
+.sk-line.w30 { width: 30%; }
+
+.sk-row { display: flex; align-items: center; }
+
+.sk-cover {
+  width: 92rpx;
+  height: 124rpx;
+  border-radius: 14rpx;
+  flex: none;
+  margin-right: 20rpx;
+}
+
+.sk-lines { flex: 1; }
+
+/* ---- 加载更多 ---- */
+.more-tip {
+  text-align: center;
+  font-size: 22rpx;
+  color: #b9b4ab;
+  padding: 24rpx 0 12rpx;
+}
+
+/* ---- 评价配图 ---- */
+.review-photos {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 18rpx;
+}
+
+.rp {
+  position: relative;
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 14rpx;
+  overflow: hidden;
+  margin: 0 14rpx 14rpx 0;
+}
+
+.rp-img { width: 100%; height: 100%; }
+
+.rp-del {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 36rpx;
+  height: 36rpx;
+  line-height: 32rpx;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 26rpx;
+  border-bottom-left-radius: 12rpx;
+}
+
+.rp-add {
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 14rpx;
+  border: 1rpx dashed #d6d0c6;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rp-plus { font-size: 38rpx; color: #b9b4ab; line-height: 1; }
+
+.rp-txt { font-size: 20rpx; color: #b9b4ab; margin-top: 6rpx; }
+
+.done.link { color: #2f7d5b; }
+
+.view-stars { font-size: 34rpx; color: #e2a33c; margin-bottom: 14rpx; }
+
+.view-content {
+  font-size: 28rpx;
+  color: #3c444d;
+  line-height: 1.7;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx 22rpx;
+}
+
+.view-imgs { display: flex; flex-wrap: wrap; margin-top: 16rpx; }
+
+.view-img {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 12rpx;
+  margin: 0 14rpx 14rpx 0;
+  background: #eee9e1;
+}
+
+.appeal-tip {
+  font-size: 24rpx;
+  color: #9aa3ad;
+  margin-bottom: 20rpx;
+  line-height: 1.6;
+}
+
+/* 超时倒计时 */
+.countdown {
+  font-size: 22rpx;
+  color: #b8822a;
+  background: #fdf6e9;
+  border-radius: 10rpx;
+  padding: 8rpx 16rpx;
+  margin-top: 14rpx;
+}
+
+.countdown.urgent {
+  color: #c0563f;
+  background: #fbeeeb;
+}

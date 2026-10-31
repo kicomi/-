@@ -1,0 +1,84 @@
+.card { margin-bottom: 24rpx; }
+
+.avatar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 40rpx 28rpx;
+  background: linear-gradient(160deg, #eef7f2, #ffffff 62%);
+}
+
+.avatar-wrap {
+  position: relative;
+  width: 176rpx;
+  height: 176rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #e9f2ed;
+  border: 4rpx solid #fff;
+  box-shadow: 0 10rpx 30rpx -12rpx rgba(47, 125, 91, 0.6);
+}
+
+.avatar-img { width: 100%; height: 100%; }
+
+.avatar-txt {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 176rpx;
+  font-size: 64rpx;
+  color: #2f7d5b;
+  font-weight: 600;
+}
+
+.avatar-mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 46rpx;
+  line-height: 46rpx;
+  text-align: center;
+  font-size: 20rpx;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.42);
+}
+
+.avatar-tip {
+  margin-top: 16rpx;
+  font-size: 22rpx;
+  color: #9aa3ad;
+}
+
+.picker {
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #fff;
+  border: 1rpx solid #eee9e1;
+  border-radius: 20rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+}
+
+.major-chips {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 14rpx;
+}
+
+.major-chip {
+  font-size: 22rpx;
+  color: #2f7d5b;
+  background: #eef7f2;
+  border-radius: 20rpx;
+  padding: 6rpx 18rpx;
+  margin: 0 12rpx 12rpx 0;
+}
+
+.tip {
+  text-align: center;
+  font-size: 22rpx;
+  color: #9aa3ad;
+  margin-top: 24rpx;
+  line-height: 1.6;
+}

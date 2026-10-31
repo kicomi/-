@@ -1,0 +1,131 @@
+<view class="orders">
+  <view class="tabs">
+    <view class="tab {{role === 'buyer' ? 'on' : ''}}" data-role="buyer" bindtap="switchRole">我买到的</view>
+    <view class="tab {{role === 'seller' ? 'on' : ''}}" data-role="seller" bindtap="switchRole">我卖出的</view>
+  </view>
+
+  <view class="page">
+    <!-- 骨架屏：首屏加载时占位，避免白屏 -->
+    <block wx:if="{{skeleton}}">
+      <view class="sk-card" wx:for="{{[1,2,3]}}" wx:key="*this">
+        <view class="sk-line w40"></view>
+        <view class="sk-row">
+          <view class="sk-cover"></view>
+          <view class="sk-lines">
+            <view class="sk-line w70"></view>
+            <view class="sk-line w50"></view>
+            <view class="sk-line w30"></view>
+          </view>
+        </view>
+        <view class="sk-line w90" style="margin-top:18rpx"></view>
+      </view>
+    </block>
+
+    <block wx:else>
+      <view class="order" wx:for="{{rows}}" wx:key="id">
+        <view class="o-head">
+          <text class="no">{{item.orderNo}}</text>
+          <text class="status s-{{item.status}}">{{item.statusText}}</text>
+        </view>
+
+        <view class="o-body" data-id="{{item.bookId}}" bindtap="onBookTap">
+          <view class="o-cover">
+            <image wx:if="{{item.coverSrc}}" class="o-cover-img" src="{{item.coverSrc}}" mode="aspectFill" lazy-load />
+            <text wx:else>{{item.bookTitle[0]}}</text>
+          </view>
+          <view class="o-info">
+            <view class="o-title">{{item.bookTitle}}</view>
+            <view class="o-meta">{{role === 'buyer' ? '卖家' : '买家'}}：{{role === 'buyer' ? item.sellerNickname : item.buyerNickname}}</view>
+            <view class="o-meta">{{item.pickupPlace || '未指定地点'}}</view>
+          </view>
+          <view class="price">¥{{item.price}}</view>
+        </view>
+
+        <!-- 待确认订单的自动取消倒计时 -->
+        <view class="countdown {{item.remainHours <= 2 ? 'urgent' : ''}}" wx:if="{{item.status === 0 && item.remainHours !== null && item.remainHours !== undefined}}">
+          {{item.remainHours > 0 ? '卖家还有 ' + item.remainHours + ' 小时确认，超时自动取消' : '即将自动取消'}}
+        </view>
+
+        <!-- 状态时间轴 -->
+        <view class="timeline">
+          <view class="tl-node" wx:for="{{item.timeline}}" wx:for-item="t" wx:key="name">
+            <view class="tl-line left {{t.isFirst ? 'hide' : ''}} {{t.state === 'cancel' ? 'red' : ''}}"></view>
+            <view class="tl-dot {{t.state}}"></view>
+            <view class="tl-line right {{t.isLast ? 'hide' : ''}} {{t.state === 'cancel' ? 'red' : ''}}"></view>
+            <text class="tl-name {{t.state}}">{{t.name}}</text>
+            <text class="tl-time">{{t.time || ' '}}</text>
+          </view>
+        </view>
+
+        <view class="o-actions">
+          <view wx:if="{{role === 'seller' && item.status === 0}}" class="mini primary"
+                data-id="{{item.id}}" bindtap="onConfirm">确认预约</view>
+          <view wx:if="{{item.status === 1}}" class="mini primary"
+                data-id="{{item.id}}" bindtap="onComplete">完成交易</view>
+          <view wx:if="{{item.status === 0 || item.status === 1}}" class="mini"
+                data-id="{{item.id}}" bindtap="onCancel">取消</view>
+          <view wx:if="{{item.status !== 3}}" class="mini"
+                data-order="{{item}}" bindtap="openAppeal">申诉</view>
+          <view wx:if="{{role === 'buyer' && item.status === 2 && !item.reviewed}}" class="mini primary"
+                data-order="{{item}}" bindtap="openReview">评价</view>
+          <text wx:if="{{item.status === 2 && item.reviewed}}" class="done link"
+                data-order="{{item}}" bindtap="openReviewed">查看评价 ›</text>
+        </view>
+      </view>
+
+      <view wx:if="{{loadingMore}}" class="more-tip">加载中…</view>
+      <view wx:if="{{!hasMore && rows.length}}" class="more-tip">没有更多了</view>
+
+      <view wx:if="{{!rows.length}}" class="empty">
+        {{role === 'buyer' ? '还没有买过书' : '还没有卖出过书'}}
+      </view>
+    </block>
+  </view>
+
+  <!-- 订单申诉 -->
+  <view class="mask" wx:if="{{appealOpen}}" bindtap="closeAppeal"></view>
+  <view class="sheet" wx:if="{{appealOpen}}">
+    <view class="sheet-title">这笔订单有问题</view>
+    <view class="appeal-tip">提交后管理员会介入核实，处理结果会通知你</view>
+    <textarea class="ta" value="{{appealText}}" bindinput="onAppealInput"
+              placeholder="说明情况，例如：约好了时间卖家一直没来" />
+    <view class="btn btn-primary" style="margin-top:24rpx" bindtap="submitAppeal">提交申诉</view>
+  </view>
+
+  <!-- 已评价详情 -->
+  <view class="mask" wx:if="{{viewOpen}}" bindtap="closeViewed"></view>
+  <view class="sheet" wx:if="{{viewOpen && viewOrder}}">
+    <view class="sheet-title">我的评价</view>
+    <view class="view-stars">{{viewOrder.reviewRating}} 星</view>
+    <view class="view-content">{{viewOrder.reviewContent || '当时没有填写评价内容'}}</view>
+    <view class="view-imgs" wx:if="{{viewOrder.imgs.length}}">
+      <image wx:for="{{viewOrder.imgs}}" wx:key="*this" class="view-img" src="{{item}}"
+             mode="aspectFill" data-index="{{index}}" bindtap="previewViewed" />
+    </view>
+    <view class="btn btn-primary" style="margin-top:24rpx" bindtap="closeViewed">知道了</view>
+  </view>
+
+  <view class="mask" wx:if="{{reviewOpen}}" bindtap="closeReview"></view>
+  <view class="sheet" wx:if="{{reviewOpen}}">
+    <view class="sheet-title">评价这次交易</view>
+    <view class="stars">
+      <text wx:for="{{[1,2,3,4,5]}}" wx:key="*this"
+            class="star {{item <= rating ? 'on' : ''}}" data-n="{{item}}" bindtap="setRating">★</text>
+    </view>
+    <textarea class="ta" value="{{content}}" bindinput="onContent"
+              placeholder="书况和描述一致吗？沟通是否顺畅？" />
+
+    <!-- 评价配图：书况对不上时，图片比文字有说服力 -->
+    <view class="review-photos">
+      <view class="rp" wx:for="{{reviewPreview}}" wx:key="*this" data-index="{{index}}" bindtap="previewReviewImage">
+        <image class="rp-img" src="{{item}}" mode="aspectFill" />
+        <view class="rp-del" data-index="{{index}}" catchtap="removeReviewImage">×</view>
+      </view>
+      <view class="rp-add" wx:if="{{reviewImages.length < 3}}" bindtap="chooseReviewImage">
+        <text class="rp-plus">+</text>
+        <text class="rp-txt">{{uploading ? '上传中' : '配图'}}</text>
+      </view>
+    </view>
+    <view class="btn btn-primary" style="margin-top:24rpx" bindtap="submitReview">提交评价</view>
+  </view>
+</view>

@@ -1,0 +1,162 @@
+.head {
+  padding: 24rpx 32rpx 12rpx;
+  background: #f7f4ef;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1rpx solid #eee9e1;
+  border-radius: 38rpx;
+  height: 76rpx;
+  padding: 0 28rpx;
+}
+
+.input {
+  flex: 1;
+  font-size: 27rpx;
+}
+
+.go {
+  font-size: 27rpx;
+  color: #2f7d5b;
+  font-weight: 600;
+  margin-left: 16rpx;
+}
+
+.chips {
+  white-space: nowrap;
+  margin-top: 20rpx;
+}
+
+.chip {
+  display: inline-block;
+  padding: 8rpx 22rpx;
+  border-radius: 24rpx;
+  border: 1rpx solid #eee9e1;
+  background: #fff;
+  color: #5b6470;
+  font-size: 24rpx;
+  margin-right: 14rpx;
+  margin-bottom: 8rpx;
+}
+
+.chip.on {
+  background: #e9f2ed;
+  border-color: #2f7d5b;
+  color: #2f7d5b;
+}
+
+.result {
+  display: flex;
+  justify-content: space-between;
+  font-size: 23rpx;
+  color: #9aa3ad;
+  padding: 12rpx 4rpx 16rpx;
+}
+
+.hint {
+  color: #2f7d5b;
+}
+
+
+/* ---- 搜索建议区（紧凑版） ---- */
+.suggest {
+  padding: 24rpx 32rpx 12rpx;
+}
+
+.sug-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.sug-title {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #3c444d;
+  letter-spacing: 0.5rpx;
+}
+
+.sug-sub { font-size: 20rpx; color: #b9b4ab; }
+
+.sug-clear { font-size: 21rpx; color: #9aa3ad; }
+
+/* 历史：小号文字胶囊，一行放得下更多 */
+.his-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30rpx;
+}
+
+.his-chip {
+  font-size: 23rpx;
+  color: #5b6470;
+  background: #f2efe9;
+  border-radius: 8rpx;
+  padding: 8rpx 18rpx;
+  margin: 0 12rpx 12rpx 0;
+}
+
+/* 热词：榜单列表，带序号和数量 */
+.hot-list {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 6rpx 24rpx;
+  margin-bottom: 12rpx;
+}
+
+.hot-row {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f2ec;
+}
+
+.hot-row:last-child { border-bottom: none; }
+
+.rank {
+  width: 40rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #c4bfb7;
+  font-style: italic;
+}
+
+.rank.top { color: #c07a43; }
+
+.hot-name {
+  flex: 1;
+  font-size: 27rpx;
+  color: #1b1f23;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.hot-cnt { font-size: 21rpx; color: #b9b4ab; }
+
+/* ---- 无结果推荐 ---- */
+.empty-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 30rpx;
+}
+
+.er-title { font-size: 27rpx; color: #3c444d; }
+
+.er-sub { font-size: 23rpx; color: #b9b4ab; margin-top: 12rpx; }
+
+.er-chips { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 28rpx; }
+
+.er-chip {
+  font-size: 23rpx;
+  color: #2f7d5b;
+  background: #eef7f2;
+  border-radius: 22rpx;
+  padding: 8rpx 22rpx;
+  margin: 0 12rpx 14rpx 0;
+}

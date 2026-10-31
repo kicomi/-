@@ -1,0 +1,191 @@
+<view class="detail" wx:if="{{book}}">
+  <!-- 图片画廊 -->
+  <view class="gallery">
+    <swiper wx:if="{{gallery.length}}" class="gallery-swiper" circular bindchange="onSwiperChange">
+      <swiper-item wx:for="{{gallery}}" wx:key="*this">
+        <image class="gallery-img" src="{{item}}" mode="aspectFit" data-index="{{index}}" bindtap="previewGallery" />
+      </swiper-item>
+    </swiper>
+
+    <!-- 没有实拍图时用封面占位，不至于开天窗 -->
+    <view wx:else class="gallery-empty">
+      <text class="ghost-char">{{book.title[0]}}</text>
+      <text class="ghost-tip">卖家暂未上传实拍图</text>
+    </view>
+
+    <view class="gallery-count" wx:if="{{gallery.length > 1}}">{{galleryIndex + 1}} / {{gallery.length}}</view>
+    <view class="gallery-cond">{{conditionText}}</view>
+  </view>
+
+  <view class="page">
+    <!-- 价格与标题 -->
+    <view class="card main-card">
+      <view class="title">{{book.title}}</view>
+      <view class="sub">{{book.author}} · {{book.publisher}} · {{book.publishYear}}</view>
+      <view class="price-row">
+        <text class="price big">¥{{book.price}}</text>
+        <text class="price-origin">¥{{book.originalPrice}}</text>
+        <text wx:if="{{saving > 0}}" class="off-tag">省 {{saving}}%</text>
+      </view>
+      <view class="tags">
+        <text class="chip warm">{{conditionText}}</text>
+        <text wx:if="{{book.noteFlag === 1}}" class="chip">含笔记划线</text>
+        <text wx:if="{{book.courseName}}" class="chip">{{book.courseName}}</text>
+      </view>
+    </view>
+
+    <!-- 书况 -->
+    <view class="card">
+      <view class="card-title">书况说明</view>
+      <view class="dim" wx:for="{{dims}}" wx:key="label">
+        <text class="dim-label">{{item.label}}</text>
+        <view class="dim-bar">
+          <view wx:for="{{[1,2,3,4,5]}}" wx:for-item="n" wx:key="*this"
+                class="dim-cell {{n <= item.value ? 'on' : ''}}"></view>
+        </view>
+        <text class="dim-text">{{item.text}}</text>
+      </view>
+
+      <view class="selling">
+        同款在售 <text class="hl">{{book.listingCount}}</text> 本 ·
+        近 30 天同类成交 <text class="hl">{{book.soldCount30d || 0}}</text> 笔
+      </view>
+    </view>
+
+    <!-- 卖家画像 -->
+    <view class="card" wx:if="{{seller}}">
+      <view class="card-title">卖家</view>
+
+      <view class="seller" bindtap="goSeller">
+        <view class="avatar">
+          <image wx:if="{{seller.avatarSrc}}" class="avatar-img" src="{{seller.avatarSrc}}" mode="aspectFill" />
+          <text wx:else>{{seller.nickname[0]}}</text>
+        </view>
+        <view class="seller-info">
+          <view class="seller-name">{{seller.nickname}} <text class="go-arrow">›</text></view>
+          <view class="seller-major">{{seller.majorName || '本校学生'}}<text wx:if="{{seller.grade}}"> · {{seller.grade}} 级</text></view>
+        </view>
+        <text class="credit">信用 {{seller.creditScore}}</text>
+      </view>
+
+      <view class="seller-stats">
+        <view class="s-stat"><text class="s-num">{{seller.soldCount}}</text><text class="s-lbl">已成交</text></view>
+        <view class="s-divider"></view>
+        <view class="s-stat"><text class="s-num">{{seller.goodRate}}%</text><text class="s-lbl">好评率</text></view>
+        <view class="s-divider"></view>
+        <view class="s-stat"><text class="s-num">{{seller.onSaleCount}}</text><text class="s-lbl">在售</text></view>
+        <view class="s-divider"></view>
+        <view class="s-stat"><text class="s-num">{{seller.ratingAvg}}</text><text class="s-lbl">评分</text></view>
+      </view>
+
+      <view class="review" wx:for="{{seller.recentReviews}}" wx:key="index">
+        <view class="review-head">
+          <text class="review-from">{{item.fromNickname}}</text>
+          <text class="review-star">{{item.rating}} 星</text>
+        </view>
+        <view class="review-text">{{item.content || '买家没有填写评价内容'}}</view>
+        <view class="review-imgs" wx:if="{{item.imgs.length}}">
+          <image wx:for="{{item.imgs}}" wx:for-item="img" wx:key="*this" class="review-img"
+                 src="{{img}}" mode="aspectFill" data-src="{{img}}" bindtap="previewReview" />
+        </view>
+      </view>
+      <view wx:if="{{!seller.recentReviews.length}}" class="review-empty">还没有收到评价</view>
+
+      <!-- 有评价才给入口；0 条时上面已经写了"还没有收到评价"，不必重复 -->
+      <view class="all-reviews" wx:if="{{seller.reviewCount > 0}}" bindtap="goReviews">
+        <text>共 {{seller.reviewCount}} 条评价</text>
+        <text class="arrow">查看全部 ›</text>
+      </view>
+
+      <view class="contact" bindtap="contactSeller">私信卖家 · 问问书况</view>
+    </view>
+
+    <view class="card" wx:if="{{book.description}}">
+      <view class="card-title">卖家描述</view>
+      <view class="desc">{{book.description}}</view>
+    </view>
+
+    <view class="report-entry" bindtap="openReport">举报这本书</view>
+
+    <view class="card" wx:if="{{sellerBooks.length}}">
+      <view class="card-title">卖家其他在售（{{sellerBooks.length}}）</view>
+      <scroll-view class="similar" scroll-x enable-flex>
+        <view class="sim" wx:for="{{sellerBooks}}" wx:key="id" data-id="{{item.id}}" bindtap="onSimilarTap">
+          <view class="sim-cover">
+            <image wx:if="{{item.coverImg}}" class="sim-img" src="{{item.coverImg}}" mode="aspectFill" />
+            <text wx:else>{{item.title[0]}}</text>
+          </view>
+          <view class="sim-title">{{item.title}}</view>
+          <view class="price small">¥{{item.price}}</view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view class="card" wx:if="{{similar.length}}">
+      <view class="card-title">相似的书</view>
+      <scroll-view class="similar" scroll-x enable-flex>
+        <view class="sim" wx:for="{{similar}}" wx:key="id" data-id="{{item.id}}" bindtap="onSimilarTap">
+          <view class="sim-cover">
+            <image wx:if="{{item.coverImg}}" class="sim-img" src="{{item.coverImg}}" mode="aspectFill" />
+            <text wx:else>{{item.title[0]}}</text>
+          </view>
+          <view class="sim-title">{{item.title}}</view>
+          <view class="price small">¥{{item.price}}</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bar">
+    <view class="fav {{favorited ? 'on' : ''}}" bindtap="toggleFav">{{favorited ? '已收藏' : '收藏'}}</view>
+    <view class="bargain" wx:if="{{book.status === 1}}" bindtap="openBargain">还价</view>
+    <view class="btn btn-primary buy" bindtap="openSheet" wx:if="{{book.status === 1}}">预约自提</view>
+    <!-- 已售出：不给死按钮，直接引导去看同款 -->
+    <view class="btn btn-primary buy" wx:else bindtap="findSimilar">已售出 · 看看同款</view>
+  </view>
+
+  <!-- 预约弹层 -->
+  <view class="sheet-mask" wx:if="{{sheetOpen}}" bindtap="closeSheet"></view>
+  <view class="sheet" wx:if="{{sheetOpen}}">
+    <view class="sheet-title">预约自提</view>
+    <view class="field">
+      <text class="label">交接地点</text>
+      <picker mode="selector" range="{{places}}" bindchange="onPlaceChange">
+        <view class="picker">{{pickupPlace}}</view>
+      </picker>
+    </view>
+    <view class="field">
+      <text class="label">给卖家留言</text>
+      <textarea class="ta" value="{{remark}}" bindinput="onRemarkInput"
+                placeholder="例如：今晚七点在图书馆门口可以吗" />
+    </view>
+    <view class="btn btn-primary" bindtap="submitOrder">确认预约</view>
+  </view>
+
+  <!-- 举报弹层 -->
+  <view class="sheet-mask" wx:if="{{reportOpen}}" bindtap="closeReport"></view>
+  <view class="sheet" wx:if="{{reportOpen}}">
+    <view class="sheet-title">举报这本书</view>
+    <view class="report-tip">请选择原因，管理员会核实处理</view>
+    <view class="reason-list">
+      <text class="reason {{reportReason === item ? 'on' : ''}}" wx:for="{{reportReasons}}" wx:key="*this"
+            data-reason="{{item}}" bindtap="pickReason">{{item}}</text>
+    </view>
+    <textarea class="ta report-ta" value="{{reportDetail}}" bindinput="onReportDetail"
+              placeholder="补充说明（选填），写清楚问题更容易被处理" />
+    <view class="btn btn-primary" bindtap="submitReport">提交举报</view>
+  </view>
+
+  <!-- 还价弹层 -->
+  <view class="sheet-mask" wx:if="{{bargainOpen}}" bindtap="closeBargain"></view>
+  <view class="sheet" wx:if="{{bargainOpen}}">
+    <view class="sheet-title">向卖家还价</view>
+    <view class="bargain-tip">标价 ¥{{book.price}}，出价会作为一条消息发给卖家</view>
+    <view class="bargain-input">
+      <text class="yuan">¥</text>
+      <input type="digit" value="{{bargainPrice}}" bindinput="onBargainInput" placeholder="请输入你的心理价" />
+    </view>
+    <view class="btn btn-primary" bindtap="sendBargain">发送出价</view>
+  </view>
+</view>

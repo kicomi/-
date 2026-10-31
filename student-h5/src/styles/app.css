@@ -1,0 +1,268 @@
+/* ============================================================
+   学生端 H5 全局样式
+   设计取向：暖米色底 + 深绿主色 + 大圆角卡片，接近「多抓鱼」的书店感
+   ============================================================ */
+
+:root {
+  --bg: #f7f4ef;
+  --card: #ffffff;
+  --ink: #1b1f23;
+  --ink-2: #5b6470;
+  --ink-3: #9aa3ad;
+  --line: #eee9e1;
+  --brand: #2f7d5b;
+  --brand-dark: #246146;
+  --brand-soft: #e9f2ed;
+  --warm: #c07a43;
+  --danger: #c0563f;
+  --radius: 14px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #efeae2;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  height: 100%;
+}
+
+/* 桌面上收窄成手机宽度，手机上占满 */
+.app-shell {
+  max-width: 430px;
+  min-height: 100%;
+  margin: 0 auto;
+  background: var(--bg);
+  position: relative;
+  padding-bottom: calc(64px + var(--safe-bottom));
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.06);
+  overflow-x: hidden;
+}
+
+.page {
+  padding: 0 16px 20px;
+}
+
+.muted {
+  color: var(--ink-3);
+}
+
+.ink-2 {
+  color: var(--ink-2);
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 20px 0 10px;
+}
+
+.section-title h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: 0.3px;
+}
+
+.section-title a {
+  font-size: 12px;
+  color: var(--ink-3);
+  text-decoration: none;
+}
+
+/* ---------------- 价格 ---------------- */
+
+.price {
+  color: var(--brand);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.price .symbol {
+  font-size: 11px;
+  margin-right: 1px;
+}
+
+.price-origin {
+  color: var(--ink-3);
+  text-decoration: line-through;
+  font-size: 11.5px;
+  margin-left: 6px;
+  font-weight: 400;
+}
+
+/* ---------------- 标签 ---------------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  background: #f3f0ea;
+  color: var(--ink-2);
+}
+
+.chip.green {
+  background: var(--brand-soft);
+  color: var(--brand);
+}
+
+.chip.warm {
+  background: #fbf0e6;
+  color: var(--warm);
+}
+
+/* ---------------- 按钮 ---------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 21px;
+  border: none;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+}
+
+.btn-primary:disabled {
+  background: #b9cdc3;
+}
+
+.btn-ghost {
+  background: #fff;
+  color: var(--ink-2);
+  border: 1px solid var(--line);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ---------------- 表单 ---------------- */
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+  font-size: 12.5px;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+
+.field .required::after {
+  content: ' *';
+  color: var(--danger);
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--ink);
+  font-family: inherit;
+  outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--brand);
+}
+
+textarea {
+  resize: none;
+}
+
+/* ---------------- 空状态 ---------------- */
+
+.empty {
+  padding: 48px 0;
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+.empty .icon {
+  font-size: 30px;
+  opacity: 0.35;
+  margin-bottom: 8px;
+}
+
+/* ---------------- 骨架 / 加载 ---------------- */
+
+.loading {
+  padding: 40px 0;
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.18s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

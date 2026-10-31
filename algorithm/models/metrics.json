@@ -1,0 +1,37 @@
+{
+  "price": {
+    "model_version": "rf-v1.0",
+    "chosen": "random_forest",
+    "metrics": {
+      "baseline": {
+        "MAE": 13.899,
+        "RMSE": 17.38,
+        "R2": 0.2653,
+        "MAE占原价比例": 24.06
+      },
+      "linear": {
+        "MAE": 4.12,
+        "RMSE": 5.649,
+        "R2": 0.9224,
+        "MAE占原价比例": 7.13
+      },
+      "random_forest": {
+        "MAE": 3.942,
+        "RMSE": 5.435,
+        "R2": 0.9281,
+        "MAE占原价比例": 6.83
+      }
+    },
+    "residual_q10": -5.826676320857756,
+    "residual_q90": 5.756451939528174
+  },
+  "recall": {
+    "users": 199,
+    "k": 10,
+    "recall_itemcf": 0.1357,
+    "recall_content": 0.2915,
+    "recall_fused": 0.4322,
+    "recall_popularity": 0.0854,
+    "lift_vs_popularity": 406.09
+  }
+}

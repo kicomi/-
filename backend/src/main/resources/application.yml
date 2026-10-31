@@ -1,0 +1,68 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+spring:
+  application:
+    name: campus-book-server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/campus_book?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false&rewriteBatchedStatements=true
+    username: root
+    password: "123456"
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+  servlet:
+    multipart:
+      # 手机原图动辄 10MB 以上，上限给宽一点，
+      # 真正的体积控制在客户端压缩和 FileController 里做
+      max-file-size: 20MB
+      max-request-size: 30MB
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+    default-property-inclusion: non_null
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+
+app:
+  jwt:
+    secret: campus-book-graduation-project-secret-key-2026-huzhou
+    expire-hours: 72
+  algorithm:
+    base-url: http://127.0.0.1:5001
+    timeout-ms: 1500
+  upload:
+    dir: ./uploads
+  # 运营助手。enabled=false 时走本地规则分析；配好 base-url/api-key 后自动改用大模型，
+  # 调用失败会回退到本地分析，不会影响页面可用性。
+  ai:
+    enabled: false
+    base-url: https://api.deepseek.com/v1
+    api-key: ""
+    model: deepseek-chat
+  demo:
+    auto-login-openid: o_stu_001
+
+logging:
+  level:
+    root: INFO
+    com.campusbook: DEBUG
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+  api-docs:
+    path: /v3/api-docs

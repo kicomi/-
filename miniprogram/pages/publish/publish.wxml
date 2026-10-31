@@ -1,0 +1,105 @@
+<view class="publish">
+  <view class="page">
+    <view class="card">
+      <view class="field">
+        <text class="label">书名 *</text>
+        <input value="{{form.title}}" data-key="title" bindinput="onField" placeholder="例如：数据结构（C语言版）" />
+      </view>
+      <view class="field">
+        <text class="label">作者</text>
+        <input value="{{form.author}}" data-key="author" bindinput="onField" placeholder="严蔚敏" />
+      </view>
+      <view class="field">
+        <text class="label">出版社</text>
+        <input value="{{form.publisher}}" data-key="publisher" bindinput="onField" placeholder="清华大学出版社" />
+      </view>
+      <view class="field">
+        <text class="label">原价 *</text>
+        <input type="digit" value="{{form.originalPrice}}" data-key="originalPrice" bindinput="onField" placeholder="45" />
+      </view>
+      <view class="field" style="margin-bottom:0">
+        <text class="label">出版年份</text>
+        <input type="number" value="{{form.publishYear}}" data-key="publishYear" bindinput="onField" placeholder="2018" />
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="card-title">书况</view>
+
+      <view class="field">
+        <text class="label">品相</text>
+        <view class="seg">
+          <view wx:for="{{conditions}}" wx:key="v" class="seg-item {{form.conditionLevel === item.v ? 'on' : ''}}"
+                data-v="{{item.v}}" bindtap="onCondition">{{item.label}}</view>
+        </view>
+      </view>
+
+      <view class="field">
+        <text class="label">新旧程度</text>
+        <view class="seg">
+          <view wx:for="{{wears}}" wx:key="v" class="seg-item {{form.wearLevel === item.v ? 'on' : ''}}"
+                data-v="{{item.v}}" bindtap="onWear">{{item.label}}</view>
+        </view>
+      </view>
+
+      <view class="switch-row">
+        <text class="label" style="margin:0">含笔记 / 划线</text>
+        <view class="switch {{form.noteFlag ? 'on' : ''}}" bindtap="toggleNote">
+          <view class="knob"></view>
+        </view>
+      </view>
+
+      <view class="field">
+        <text class="label">实拍图（最多 6 张）</text>
+        <view class="photos">
+          <view class="photo" wx:for="{{previewImages}}" wx:key="*this"
+                data-index="{{index}}" bindtap="previewImage">
+            <image class="photo-img" src="{{item}}" mode="aspectFill" />
+            <view class="photo-del" data-index="{{index}}" catchtap="removeImage">×</view>
+          </view>
+          <view class="photo-add" wx:if="{{previewImages.length < 6}}" bindtap="chooseImage">
+            <text class="plus">+</text>
+            <text class="add-txt">{{uploading ? '上传中' : '拍照/相册'}}</text>
+          </view>
+        </view>
+        <view class="photo-tip">实拍图会显示在书籍详情页顶部，有图的书被点开概率更高</view>
+      </view>
+
+      <view class="field" style="margin-bottom:0">
+        <text class="label">补充描述</text>
+        <textarea class="ta" value="{{form.description}}" data-key="description" bindinput="onField"
+                  placeholder="书页是否完整、有无笔记、交易地点等" />
+      </view>
+    </view>
+
+    <view class="card price-card">
+      <view class="between">
+        <text class="card-title" style="margin:0">智能定价</text>
+        <view class="ai-btn" bindtap="askPrice">{{pricing ? '计算中…' : (suggest ? '重新估算' : '获取建议价')}}</view>
+      </view>
+
+      <view wx:if="{{!suggest}}" class="price-empty">按原价、品相、新旧和同款在售量，用回归模型给出参考价</view>
+
+      <view wx:else class="price-result">
+        <view class="sug-row">
+          <text class="sug-label">建议售价</text>
+          <text class="sug-value">¥{{suggest.suggestedPrice}}</text>
+        </view>
+        <view class="sug-range">区间 ¥{{suggest.priceLow}} ~ ¥{{suggest.priceHigh}}</view>
+        <view class="tips">
+          <view class="tip-line" wx:for="{{suggest.tips}}" wx:key="*this">· {{item}}</view>
+        </view>
+        <view class="btn btn-ghost" bindtap="adoptPrice">采纳建议价 ¥{{suggest.suggestedPrice}}</view>
+        <view class="model-line">{{suggest.model}} · {{suggest.modelVersion}}</view>
+      </view>
+
+      <view class="field" style="margin:28rpx 0 0">
+        <text class="label">我的定价 *</text>
+        <input type="digit" value="{{form.price}}" data-key="price" bindinput="onField" placeholder="请输入出售价" />
+      </view>
+    </view>
+
+    <view class="btn btn-primary" bindtap="submit" disabled="{{saving}}">{{saving ? '发布中…' : '发布'}}</view>
+    <view class="notice">发布后即出现在学生端，管理员可对违规内容下架</view>
+  </view>
+</view>

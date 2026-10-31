@@ -1,0 +1,123 @@
+.login {
+  min-height: 100vh;
+  padding: 0 48rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(560rpx 340rpx at 78% -8%, #dcefe4 0%, transparent 62%),
+    linear-gradient(180deg, #f2f8f5 0%, #f7f4ef 460rpx);
+}
+
+.top { padding: 120rpx 0 64rpx; }
+
+.logo {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 28rpx;
+  background: linear-gradient(140deg, #3f9d74, #2f7d5b);
+  color: #fff;
+  font-size: 46rpx;
+  line-height: 104rpx;
+  text-align: center;
+  font-family: serif;
+  box-shadow: 0 16rpx 36rpx -18rpx rgba(47, 125, 91, 0.8);
+}
+
+.title {
+  margin-top: 32rpx;
+  font-size: 46rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+}
+
+.sub {
+  margin-top: 12rpx;
+  font-size: 25rpx;
+  color: #8f9a94;
+  line-height: 1.6;
+}
+
+/* ---- 主操作 ---- */
+.actions { margin-top: 20rpx; }
+
+.btn-wechat {
+  height: 96rpx;
+  border-radius: 48rpx;
+  background: #2f7d5b;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16rpx 34rpx -20rpx rgba(47, 125, 91, 0.9);
+}
+
+.wx-dot {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  margin-right: 16rpx;
+}
+
+.hint {
+  margin-top: 18rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #9aa3ad;
+}
+
+.other-row {
+  margin-top: 34rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link { font-size: 25rpx; color: #2f7d5b; }
+
+.split { color: #d6d0c6; margin: 0 22rpx; font-size: 22rpx; }
+
+/* ---- 演示账号 ---- */
+.demo-toggle {
+  margin-top: 56rpx;
+  text-align: center;
+  font-size: 23rpx;
+  color: #9aa3ad;
+}
+
+.caret { margin-left: 6rpx; font-size: 20rpx; }
+
+.demo { margin-top: 22rpx; }
+
+.demo-tip {
+  font-size: 21rpx;
+  color: #b9b4ab;
+  margin-bottom: 16rpx;
+  text-align: center;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 22rpx 24rpx;
+  margin-bottom: 14rpx;
+}
+
+.acc-left { flex: 1; }
+
+.acc-name { font-size: 27rpx; font-weight: 600; }
+
+.acc-desc { font-size: 21rpx; color: #9aa3ad; margin-top: 4rpx; }
+
+.acc-go { font-size: 24rpx; color: #2f7d5b; }
+
+.foot {
+  margin-top: 60rpx;
+  padding-bottom: 48rpx;
+  text-align: center;
+}
+
+.foot-text { font-size: 20rpx; color: #c4bfb7; }

@@ -1,0 +1,211 @@
+.user { min-height: 100vh; background: #f7f4ef; padding-bottom: 160rpx; box-sizing: border-box; }
+
+/* ---- 头部 ---- */
+.banner {
+  position: relative;
+  height: 200rpx;
+  background: linear-gradient(150deg, #dcece2 0%, #eef4ef 60%, #f7f4ef 100%);
+}
+
+.banner-mask {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 80% at 15% 0%, rgba(47, 125, 91, .16), transparent 60%);
+}
+
+.avatar {
+  position: absolute;
+  left: 32rpx;
+  bottom: -52rpx;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  border: 6rpx solid #f7f4ef;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50rpx;
+  color: #2f7d5b;
+  box-shadow: 0 8rpx 24rpx -12rpx rgba(27, 31, 35, .28);
+}
+
+.avatar-img { width: 100%; height: 100%; }
+
+.head { padding: 68rpx 32rpx 0; }
+
+.name-row { display: flex; align-items: center; }
+
+.name { font-size: 38rpx; font-weight: 700; color: #1f262d; letter-spacing: 0.5rpx; }
+
+.lv {
+  font-size: 20rpx;
+  color: #a8761c;
+  background: #fdf4e0;
+  border-radius: 8rpx;
+  padding: 4rpx 14rpx;
+  margin-left: 14rpx;
+}
+
+.sub { display: block; font-size: 23rpx; color: #9aa3ad; margin-top: 10rpx; }
+
+/* 信用卡条 */
+.credit-bar {
+  display: flex;
+  align-items: center;
+  margin-top: 22rpx;
+  background: #fff;
+  border-radius: 18rpx;
+  padding: 18rpx 20rpx;
+}
+
+.cb-label { font-size: 22rpx; color: #9aa3ad; }
+
+.cb-score { font-size: 30rpx; font-weight: 700; color: #2f7d5b; margin-left: 12rpx; }
+
+.cb-track {
+  flex: 1;
+  height: 8rpx;
+  border-radius: 4rpx;
+  background: #f0ebe3;
+  margin-left: 20rpx;
+  overflow: hidden;
+}
+
+.cb-fill { height: 100%; border-radius: 4rpx; background: linear-gradient(90deg, #7fb79a, #2f7d5b); }
+
+/* ---- 数据 ---- */
+.stats {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 22rpx;
+  margin: 22rpx 32rpx 0;
+  padding: 26rpx 0;
+}
+
+.stat { flex: 1; display: flex; flex-direction: column; align-items: center; }
+
+.num { font-size: 32rpx; font-weight: 700; color: #1f262d; }
+
+.lbl { font-size: 20rpx; color: #9aa3ad; margin-top: 8rpx; }
+
+.line { width: 1rpx; height: 40rpx; background: #f0ebe3; }
+
+/* ---- 分段 ---- */
+.seg { display: flex; padding: 34rpx 32rpx 20rpx; }
+
+.seg-item {
+  font-size: 27rpx;
+  color: #9aa3ad;
+  margin-right: 40rpx;
+  padding-bottom: 10rpx;
+  position: relative;
+}
+
+.seg-item.on { color: #1f262d; font-weight: 650; }
+
+.seg-item.on::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 36rpx;
+  height: 6rpx;
+  border-radius: 3rpx;
+  background: #2f7d5b;
+}
+
+/* ---- 两列网格 ---- */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 32rpx;
+  justify-content: space-between;
+}
+
+.gcard {
+  width: 336rpx;
+  margin-bottom: 22rpx;
+  background: #fff;
+  border-radius: 18rpx;
+  overflow: hidden;
+}
+
+.gcover {
+  width: 336rpx;
+  height: 448rpx;
+  background: linear-gradient(150deg, #eef2ef, #e2e9e4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gimg { width: 100%; height: 100%; }
+
+.gletter { font-size: 72rpx; color: rgba(47, 125, 91, .35); font-family: serif; }
+
+.gtitle {
+  font-size: 25rpx;
+  color: #1f262d;
+  line-height: 1.4;
+  padding: 14rpx 16rpx 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.gprice { font-size: 30rpx; font-weight: 700; color: #2f7d5b; padding: 10rpx 16rpx 18rpx; }
+
+/* ---- 评价 ---- */
+.rlist { padding: 0 32rpx; }
+
+.rv { background: #fff; border-radius: 18rpx; padding: 24rpx; margin-bottom: 16rpx; }
+
+.rv-head { display: flex; align-items: center; margin-bottom: 12rpx; }
+
+.rv-avatar {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+  background: #e9f2ed;
+  color: #2f7d5b;
+  font-size: 23rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14rpx;
+}
+
+.rv-name { font-size: 24rpx; color: #5b6470; flex: 1; }
+
+.st { font-size: 21rpx; color: #e6e1d8; margin-left: 2rpx; }
+
+.st.on { color: #e2a33c; }
+
+.rv-text { font-size: 26rpx; color: #3c444d; line-height: 1.65; }
+
+.empty { width: 100%; text-align: center; padding: 70rpx 0; font-size: 24rpx; color: #b9b4ab; }
+
+/* ---- 底部私信 ---- */
+.fab {
+  position: fixed;
+  left: 32rpx;
+  right: 32rpx;
+  bottom: calc(24rpx + env(safe-area-inset-bottom));
+  height: 88rpx;
+  border-radius: 44rpx;
+  background: linear-gradient(135deg, #3f936c, #2f7d5b);
+  color: #fff;
+  font-size: 29rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12rpx 30rpx -12rpx rgba(47, 125, 91, .6);
+}
+
+.fab:active { transform: scale(0.98); }
