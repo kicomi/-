@@ -121,3 +121,10 @@
 }
 
 .foot-text { font-size: 20rpx; color: #c4bfb7; }
+
+.acc-nick {
+  font-size: 20rpx;
+  color: #9aa3ad;
+  font-weight: 400;
+  margin-left: 12rpx;
+}

@@ -31,7 +31,7 @@
     <view class="account" wx:for="{{accounts}}" wx:key="code"
           data-code="{{item.code}}" bindtap="onLogin">
       <view class="acc-left">
-        <view class="acc-name">{{item.name}}</view>
+        <view class="acc-name">{{item.name}}<text class="acc-nick">{{item.nick}}</text></view>
         <view class="acc-desc">{{item.desc}}</view>
       </view>
       <view class="acc-go">进入 ›</view>
